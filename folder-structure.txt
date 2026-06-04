@@ -1,0 +1,194 @@
+ghcc-website/
+│
+├── .env.local                          # Local secrets (must be gitignored)
+├── .env.example                        
+├── .gitignore
+├── .eslintrc.json
+├── .prettierrc                         # Code style consistency 
+├── next.config.mjs                     # image domains and more
+├── tsconfig.json
+├── tailwind.config.ts
+├── postcss.config.mjs
+├── package.json
+├── package-lock.json
+├── README.md                           
+├── HANDOFF.md                          # Non-technical guide for the org
+├── sanity.config.ts                    # Studio config: schemas, structure, plugins
+├── sanity.cli.ts                       # CLI config for `sanity` commands
+│
+├── public/
+│   ├── favicon.ico
+│   ├── favicon-32.png
+│   ├── apple-touch-icon.png
+│   ├── logo.svg                        # GHCC swirl mark
+│   ├── robots.txt
+│   └── images/
+│       ├── og-default.jpg              # Fallback social share image
+│       └── placeholder.svg
+│
+├── src/
+│   │
+│   ├── app/                            # ═══ NEXT.JS APP ROUTER ═══
+│   │   │
+│   │   ├── layout.tsx                  # Root layout: fonts, header, footer
+│   │   ├── page.tsx                    # Homepage
+│   │   ├── not-found.tsx               # 404 page
+│   │   ├── error.tsx                   # Error boundary
+│   │   ├── loading.tsx                 # Global loading UI
+│   │   ├── globals.css                 # CSS vars, resets, base styles
+│   │   ├── sitemap.ts                  # Auto-generated sitemap from Sanity
+│   │   ├── robots.ts                   # Auto-generated robots.txt
+│   │   ├── opengraph-image.tsx         # Default OG image
+│   │   │
+│   │   ├── about/
+│   │   │   └── page.tsx                # Pulls from `aboutPage` singleton
+│   │   │
+│   │   ├── announcements/
+│   │   │   ├── page.tsx                # List view
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx            # Individual announcement
+│   │   │
+│   │   ├── blog/
+│   │   │   ├── page.tsx                # Blog index
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx            # Individual post
+│   │   │
+│   │   ├── contact/
+│   │   │   └── page.tsx                # Form posts to Formspree
+│   │   │
+│   │   ├── partners/
+│   │   │   └── page.tsx                # Full partners directory
+│   │   │
+│   │   ├── studio/                     # Sanity Studio mounts here
+│   │   │   └── [[...tool]]/
+│   │   │       ├── page.tsx
+│   │   │       └── Studio.tsx
+│   │   │
+│   │   └── api/
+│   │       ├── revalidate/
+│   │       │   └── route.ts            # Sanity webhook → instant updates
+│   │       └── draft/
+│   │           ├── enable/
+│   │           │   └── route.ts        # Enable draft preview mode
+│   │           └── disable/
+│   │               └── route.ts        # Exit draft preview mode
+│   │
+│   ├── components/                     # ═══ REACT COMPONENTS ═══
+│   │   │
+│   │   ├── layout/
+│   │   │   ├── Header.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Nav.tsx
+│   │   │   ├── MobileNav.tsx
+│   │   │   ├── SkipLink.tsx            # Accessibility skip link
+│   │   │   └── DraftModeBanner.tsx     # Shows when previewing drafts
+│   │   │
+│   │   ├── home/
+│   │   │   ├── Hero.tsx
+│   │   │   ├── Marquee.tsx
+│   │   │   ├── HistoryTimeline.tsx
+│   │   │   ├── NeighborhoodMap.tsx     # Interactive SVG map
+│   │   │   ├── MapMarker.tsx
+│   │   │   ├── MapInfoPanel.tsx
+│   │   │   └── PartnersGrid.tsx
+│   │   │
+│   │   ├── blog/
+│   │   │   ├── BlogCard.tsx
+│   │   │   ├── BlogList.tsx
+│   │   │   ├── PostHeader.tsx
+│   │   │   ├── PostMeta.tsx
+│   │   │   └── PortableTextRenderer.tsx  # Renders Sanity rich text
+│   │   │
+│   │   ├── announcements/
+│   │   │   ├── AnnouncementCard.tsx
+│   │   │   ├── AnnouncementList.tsx
+│   │   │   └── AnnouncementTag.tsx
+│   │   │
+│   │   ├── partners/
+│   │   │   ├── PartnerCard.tsx
+│   │   │   └── PartnerFilters.tsx
+│   │   │
+│   │   ├── contact/
+│   │   │   ├── ContactForm.tsx         # Formspree integration
+│   │   │   ├── ContactInfo.tsx
+│   │   │   └── FormField.tsx
+│   │   │
+│   │   ├── seo/
+│   │   │   └── generateMetadata.ts     # Per-page SEO helper
+│   │   │
+│   │   └── ui/                         # Generic primitives
+│   │       ├── Button.tsx
+│   │       ├── Tag.tsx
+│   │       ├── Container.tsx
+│   │       ├── Section.tsx
+│   │       ├── SanityImage.tsx         # Wraps next/image with urlFor()
+│   │       └── VisuallyHidden.tsx      # A11y utility
+│   │
+│   ├── sanity/                         # ═══ ALL SANITY CODE ═══
+│   │   │
+│   │   ├── env.ts                      # Validated env vars
+│   │   ├── client.ts                   # Sanity client for server components
+│   │   ├── live.ts                     # Live preview client config
+│   │   ├── image.ts                    # urlFor() helper
+│   │   │
+│   │   ├── structure/
+│   │   │   └── index.ts                # Custom Studio sidebar layout
+│   │   │
+│   │   ├── queries/                    # All GROQ queries, organized
+│   │   │   ├── index.ts                # Re-exports
+│   │   │   ├── posts.ts                # getAllPosts, getPostBySlug
+│   │   │   ├── announcements.ts        # getActiveAnnouncements, getBySlug
+│   │   │   ├── partners.ts
+│   │   │   ├── landmarks.ts
+│   │   │   ├── history.ts
+│   │   │   ├── pages.ts                # Home, About, Contact singletons
+│   │   │   └── settings.ts             # Site-wide settings
+│   │   │
+│   │   ├── schemas/
+│   │   │   ├── index.ts                # Aggregates everything
+│   │   │   │
+│   │   │   ├── documents/              # Multi-instance content
+│   │   │   │   ├── post.ts             # Blog posts
+│   │   │   │   ├── announcement.ts
+│   │   │   │   ├── partner.ts
+│   │   │   │   ├── landmark.ts         # Map pins
+│   │   │   │   ├── historyEntry.ts     # Timeline items
+│   │   │   │   └── author.ts
+│   │   │   │
+│   │   │   ├── singletons/             # One-of-a-kind editable pages
+│   │   │   │   ├── siteSettings.ts     # Org name, logo, social, footer
+│   │   │   │   ├── homePage.ts         # Hero text, CTAs, section intros
+│   │   │   │   ├── aboutPage.ts        # Mission, values, stats
+│   │   │   │   ├── contactPage.ts      # Address, hours, email, a11y note
+│   │   │   │   └── navigation.ts       # Menu labels and order
+│   │   │   │
+│   │   │   └── objects/                # Reusable field groups
+│   │   │       ├── seo.ts              # title, description, ogImage
+│   │   │       ├── richText.ts         # Portable Text config
+│   │   │       ├── ctaButton.ts        # label + link
+│   │   │       ├── statBlock.ts        # number + label
+│   │   │       └── valueItem.ts        # title + description
+│   │   │
+│   │   └── plugins/
+│   │       └── singletonActions.ts     # Hides "create new" on singletons
+│   │
+│   ├── lib/                            # ═══ UTILITIES ═══
+│   │   ├── formspree.ts                # Form submission helper
+│   │   ├── fonts.ts                    # next/font: Fraunces + Inter
+│   │   ├── utils.ts                    # cn(), date formatters, etc.
+│   │   ├── constants.ts                # Non-editable values (rare!)
+│   │   └── validation.ts               # Shared Zod schemas if needed
+│   │
+│   ├── types/
+│   │   ├── sanity.ts                   # TS types for Sanity documents
+│   │   └── index.ts                    # Shared types
+│   │
+│   └── styles/
+│       └── tokens.css                  # Design tokens as CSS variables
+│
+└── docs/                               # Documentation for the team
+    ├── HANDOFF.md                      # The 1-page guide for the org
+    ├── EDITORIAL_GUIDE.md              # How to write a good announcement
+    ├── IMAGE_GUIDELINES.md             # Photo size, format, alt text rules
+    ├── ROLES.md                        # Who can publish what
+    └── TROUBLESHOOTING.md              # "My change isn't showing up" → here
