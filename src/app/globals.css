@@ -146,7 +146,6 @@ p {
 }
 
 a {
-    color: inherit;
     text-decoration: underline;
     text-decoration-color: var(--color-paper-edge);
     text-underline-offset: 3px;
@@ -155,6 +154,5 @@ a {
 }
 
 a:hover {
-    color: var(--color-red);
     text-decoration-color: var(--color-red);
 }
