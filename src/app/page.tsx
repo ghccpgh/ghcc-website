@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="">
       <main>
-        <Header />
         <h1></h1>
+
       </main>
     </div>
   );
