@@ -11,9 +11,9 @@ export default function Home() {
     <div className="">
       <main>
         <Header />
+        <Hero />
         <Timeline />
-        {/* <Hero /> */}
-        <h1></h1>
+        
       </main>
     </div>
   );
