@@ -10,10 +10,7 @@ export default function Home() {
   return (
     <div className="">
       <main>
-        <Header />
-        <Hero />
-        <Timeline />
-        
+        <h1></h1>
       </main>
     </div>
   );
