@@ -2,7 +2,6 @@ import Image from "next/image";
 
 
 //components
-import Header from "../components/layout/Header";
 import Hero from "@/components/home/Hero";
 import Timeline from "@/components/Timeline";
 
