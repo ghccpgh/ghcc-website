@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
 
 type NavItem = {
   href: string;
@@ -17,10 +18,10 @@ const links: NavItem[] = [
     href: "/about",
     label: "About",
     children: [
-      { href: "/mission", label: "Mission" },
-      { href: "/team", label: "Team" },
-      { href: "/history", label: "History" },
-      { href: "/board", label: "Board" },
+      { href: "/about/mission", label: "Mission" },
+      { href: "/about/team", label: "Team" },
+      { href: "/about/history", label: "History" },
+      { href: "/about/board", label: "Board" },
     ],
   },
   { href: "/announcements", label: "Announcements" },
@@ -33,6 +34,24 @@ export default function Nav() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [headerBottom, setHeaderBottom] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Compute header bottom position whenever dropdown opens
+  const updateHeaderBottom = useCallback(() => {
+    if (navRef.current) {
+      const header = navRef.current.closest("header");
+      if (header) {
+        const rect = header.getBoundingClientRect();
+        setHeaderBottom(rect.bottom);
+      }
+    }
+  }, []);
 
   // Close everything when route changes
   useEffect(() => {
@@ -48,7 +67,13 @@ export default function Nav() {
       }
     };
     const handleClickOutside = (e: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+      // Check if click is inside the nav or the mega panel
+      const megaPanel = document.getElementById("mega-menu-panel");
+      if (
+        navRef.current &&
+        !navRef.current.contains(e.target as Node) &&
+        (!megaPanel || !megaPanel.contains(e.target as Node))
+      ) {
         setOpenDropdown(null);
       }
     };
@@ -60,154 +85,88 @@ export default function Nav() {
     };
   }, []);
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
+  }, []);
+
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
 
-  return (
-    <nav aria-label="Primary" ref={navRef}>
-      {/* Mobile hamburger button */}
-      <button
-        type="button"
-        onClick={() => setIsMobileOpen((prev) => !prev)}
-        aria-expanded={isMobileOpen}
-        aria-controls="primary-nav-list"
-        aria-label={isMobileOpen ? "Close navigation menu" : "Open navigation menu"}
-        className="flex flex-col gap-[5px] p-2 md:hidden"
-      >
-        <span
-          className={`block h-[2px] w-6 bg-ink transition-transform duration-300 ${
-            isMobileOpen ? "translate-y-[7px] rotate-45" : ""
-          }`}
-        />
-        <span
-          className={`block h-[2px] w-6 bg-ink transition-opacity duration-300 ${
-            isMobileOpen ? "opacity-0" : "opacity-100"
-          }`}
-        />
-        <span
-          className={`block h-[2px] w-6 bg-ink transition-transform duration-300 ${
-            isMobileOpen ? "-translate-y-[7px] -rotate-45" : ""
-          }`}
-        />
-      </button>
+  const handleMouseEnter = (href: string) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    updateHeaderBottom();
+    setOpenDropdown(href);
+  };
 
-      {/* Nav list */}
-      <ul
-        id="primary-nav-list"
-        className={`
-          ${isMobileOpen ? "flex" : "hidden"}
-          absolute right-6 top-full mt-2 min-w-[220px] flex-col gap-0
-          rounded-xl border border-paper-edge bg-paper p-2 shadow-lg
-          md:static md:mt-0 md:flex md:flex-row md:items-center md:gap-1
-          md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none
-        `}
-      >
-        {links.map((item) => {
-          const active = isActive(item.href);
-          const hasChildren = !!item.children?.length;
-          const isDropdownOpen = openDropdown === item.href;
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 400);
+  };
 
-          // Item with a dropdown (About)
-          if (hasChildren) {
-            return (
-              <li
-                key={item.href}
-                className="relative"
-                onMouseEnter={() => setOpenDropdown(item.href)}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <div className="flex items-center">
+  // Find the currently open item (for rendering the mega panel)
+  const openItem = links.find((l) => l.href === openDropdown && l.children?.length);
+
+  // Check if the current page is within a section that has sub-routes (e.g. /about/*)
+  const isInSubSection = links.some((l) => l.children?.length && pathname.startsWith(l.href) && pathname !== "/");
+
+  // Mega menu panel rendered via portal so it can span full viewport width
+  const megaPanel = mounted
+    ? createPortal(
+        <div
+          id="mega-menu-panel"
+          className={`
+            hidden md:block fixed left-0 right-0 z-[49]
+            transition-all duration-300 ease-in-out overflow-hidden
+            ${openItem ? "opacity-100" : "opacity-0 pointer-events-none"}
+          `}
+          style={{
+            top: `${headerBottom}px`,
+            maxHeight: openItem ? "400px" : "0px",
+          }}
+          onMouseEnter={() => {
+            if (openItem) handleMouseEnter(openItem.href);
+          }}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className={`border-t border-paper-edge shadow-lg ${isInSubSection ? "bg-paper-warm" : "bg-paper"}`}>
+            <div className="mx-auto max-w-[1280px] px-6 py-8 md:px-12">
+              <div className="flex items-start gap-16">
+                {/* Section title */}
+                <div className="min-w-[160px]">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-mute">
+                    {openItem?.label}
+                  </p>
                   <Link
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={`
-                      inline-flex items-center gap-1 rounded-full px-4 py-2
-                      text-[0.95rem] font-medium no-underline transition-colors duration-200
-                      ${active ? "bg-ink text-paper" : "text-ink hover:bg-paper-warm"}
-                    `}
+                    href={openItem?.href ?? "#"}
+                    className="text-sm font-medium text-ink no-underline hover:text-red transition-colors duration-200"
                   >
-                    {item.label}
-                    {/* Caret icon */}
-                    <svg
-                      aria-hidden="true"
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
-                      className={`transition-transform duration-200 ${
-                        isDropdownOpen ? "rotate-180" : ""
-                      }`}
-                    >
-                      <path
-                        d="M3 4.5L6 7.5L9 4.5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        fill="none"
-                      />
-                    </svg>
+                    Overview →
                   </Link>
-                  {/* Mobile-only expand button (toggles inline submenu) */}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setOpenDropdown(isDropdownOpen ? null : item.href)
-                    }
-                    aria-expanded={isDropdownOpen}
-                    aria-label={`${isDropdownOpen ? "Collapse" : "Expand"} ${item.label} submenu`}
-                    className="ml-auto p-2 md:hidden"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      width="14"
-                      height="14"
-                      viewBox="0 0 12 12"
-                      className={`transition-transform duration-200 ${
-                        isDropdownOpen ? "rotate-180" : ""
-                      }`}
-                    >
-                      <path
-                        d="M3 4.5L6 7.5L9 4.5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        fill="none"
-                      />
-                    </svg>
-                  </button>
                 </div>
 
-                {/* Dropdown panel */}
-                <ul
-                  className={`
-                    ${isDropdownOpen ? "block" : "hidden"}
-                    md:absolute md:left-0 md:top-full md:mt-1 md:min-w-[200px]
-                    md:rounded-xl md:border md:border-paper-edge md:bg-paper md:p-2 md:shadow-lg
-                    pl-4 md:pl-2
-                  `}
-                  onFocus={() => setOpenDropdown(item.href)}
-                  onBlur={(e) => {
-                    // Only close if focus left the entire submenu
-                    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-                      setOpenDropdown(null);
-                    }
-                  }}
-                >
-                  {item.children!.map((child) => (
+                {/* Sub-links */}
+                <ul className="flex flex-wrap gap-2">
+                  {openItem?.children?.map((child) => (
                     <li key={child.href}>
                       <Link
                         href={child.href}
                         aria-current={isActive(child.href) ? "page" : undefined}
                         className={`
-                          block rounded-md px-3 py-2 text-sm no-underline
-                          transition-colors duration-200
+                          inline-block rounded-full px-5 py-2.5 text-sm font-medium
+                          no-underline transition-all duration-200
                           ${
                             isActive(child.href)
                               ? "bg-ink text-paper"
-                              : "text-ink-soft hover:bg-paper-warm hover:text-ink"
+                              : "bg-paper-warm text-ink hover:bg-ink hover:text-paper"
                           }
                         `}
                       >
@@ -216,34 +175,188 @@ export default function Nav() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )
+    : null;
+
+  return (
+    <>
+      <nav aria-label="Primary" ref={navRef}>
+        {/* Mobile hamburger button */}
+        <button
+          type="button"
+          onClick={() => setIsMobileOpen((prev) => !prev)}
+          aria-expanded={isMobileOpen}
+          aria-controls="primary-nav-list"
+          aria-label={isMobileOpen ? "Close navigation menu" : "Open navigation menu"}
+          className="flex flex-col gap-[5px] p-2 md:hidden"
+        >
+          <span
+            className={`block h-[2px] w-6 bg-ink transition-transform duration-300 ${
+              isMobileOpen ? "translate-y-[7px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`block h-[2px] w-6 bg-ink transition-opacity duration-300 ${
+              isMobileOpen ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <span
+            className={`block h-[2px] w-6 bg-ink transition-transform duration-300 ${
+              isMobileOpen ? "-translate-y-[7px] -rotate-45" : ""
+            }`}
+          />
+        </button>
+
+        {/* Nav list */}
+        <ul
+          id="primary-nav-list"
+          className={`
+            ${isMobileOpen ? "flex" : "hidden"}
+            absolute right-6 top-full mt-2 min-w-[220px] flex-col gap-0
+            rounded-xl border border-paper-edge bg-paper p-2 shadow-lg
+            md:static md:mt-0 md:flex md:flex-row md:items-center md:gap-1
+            md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none
+          `}
+        >
+          {links.map((item) => {
+            const active = isActive(item.href);
+            const hasChildren = !!item.children?.length;
+            const isDropdownOpen = openDropdown === item.href;
+
+            // Item with a dropdown -- About or History
+            if (hasChildren) {
+              return (
+                <li
+                  key={item.href}
+                  onMouseEnter={() => handleMouseEnter(item.href)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="flex items-center">
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={`
+                        inline-flex items-center gap-1 rounded-full px-4 py-2
+                        text-[0.95rem] font-medium no-underline transition-colors duration-200
+                        ${active || isDropdownOpen ? "bg-ink text-paper" : "text-ink hover:bg-paper-warm"}
+                      `}
+                    >
+                      {item.label}
+                      {/* Caret icon */}
+                      <svg
+                        aria-hidden="true"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        className={`transition-transform duration-200 ${
+                          isDropdownOpen ? "rotate-180" : ""
+                        }`}
+                      >
+                        <path
+                          d="M3 4.5L6 7.5L9 4.5"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          fill="none"
+                        />
+                      </svg>
+                    </Link>
+                    {/* Mobile-only expand button (toggles inline submenu) */}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setOpenDropdown(isDropdownOpen ? null : item.href)
+                      }
+                      aria-expanded={isDropdownOpen}
+                      aria-label={`${isDropdownOpen ? "Collapse" : "Expand"} ${item.label} submenu`}
+                      className="ml-auto p-2 md:hidden"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 12 12"
+                        className={`transition-transform duration-200 ${
+                          isDropdownOpen ? "rotate-180" : ""
+                        }`}
+                      >
+                        <path
+                          d="M3 4.5L6 7.5L9 4.5"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          fill="none"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Mobile-only inline submenu */}
+                  <ul
+                    className={`
+                      ${isDropdownOpen ? "block" : "hidden"}
+                      pl-4 md:hidden
+                    `}
+                  >
+                    {item.children!.map((child) => (
+                      <li key={child.href}>
+                        <Link
+                          href={child.href}
+                          aria-current={isActive(child.href) ? "page" : undefined}
+                          className={`
+                            block rounded-md px-3 py-2 text-sm no-underline
+                            transition-colors duration-200
+                            ${
+                              isActive(child.href)
+                                ? "bg-ink text-paper"
+                                : "text-ink-soft hover:bg-paper-warm hover:text-ink"
+                            }
+                          `}
+                        >
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            }
+
+            // Regular link (no dropdown)
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`
+                    inline-block rounded-full px-4 py-2 text-[0.95rem] font-medium
+                    no-underline transition-colors duration-200
+                    ${
+                      item.isCTA
+                        ? "bg-red text-paper hover:bg-red-dark"
+                        : active
+                        ? "bg-ink text-paper"
+                        : "text-ink hover:bg-paper-warm"
+                    }
+                  `}
+                >
+                  {item.label}
+                </Link>
               </li>
             );
-          }
+          })}
+        </ul>
+      </nav>
 
-          // Regular link (no dropdown)
-          return (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={`
-                  inline-block rounded-full px-4 py-2 text-[0.95rem] font-medium
-                  no-underline transition-colors duration-200
-                  ${
-                    item.isCTA
-                      ? "bg-red text-paper hover:bg-red-dark"
-                      : active
-                      ? "bg-ink text-paper"
-                      : "text-ink hover:bg-paper-warm"
-                  }
-                `}
-              >
-                {item.label}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+      {/* Full-width mega-menu panel (portaled to body for full-width positioning) */}
+      {megaPanel}
+    </>
   );
 }
