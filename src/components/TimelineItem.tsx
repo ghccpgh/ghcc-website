@@ -10,7 +10,6 @@ interface TimelineItemProps {
 export default function TimelineItem({ item, isReverse }: TimelineItemProps) {
   return (
     <article
-    <article 
       className={`relative grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr_auto_1fr] md:gap-12 ${
         isReverse ? "md:[direction:rtl]" : ""
       }`}
@@ -43,7 +42,7 @@ export default function TimelineItem({ item, isReverse }: TimelineItemProps) {
         className={`hidden md:flex flex-col justify-center ${
           isReverse ? "md:[direction:ltr]" : ""
         }`}
-      >
+      />
       <div className={`flex flex-col justify-center ${isReverse ? "md:[direction:ltr]" : ""}`}>
         <h3 className="font-display text-2xl font-medium text-ink mb-3">
           {item.title}
@@ -54,7 +53,7 @@ export default function TimelineItem({ item, isReverse }: TimelineItemProps) {
       </div>
 
       {/* Desktop: year badge — center column, always visible on md+ */}
-      <div className="z-10 hidden md:flex items-center justify-center">
+      <div className="z-10 hidden md:flex items-center justify-center"/>
       <div className="z-10 flex items-center justify-center order-first md:order-none">
         <span className="inline-block rounded-full border border-paper-edge bg-paper px-4 py-2 font-display text-2xl font-normal italic text-red shadow-sm whitespace-nowrap">
           {item.year}
