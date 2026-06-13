@@ -6,10 +6,10 @@ import Nav from "./Nav";
 export default function Header() {
   return (
     <header
-      className="sticky top-0 z-50 border-b border-paper-edge bg-paper/90 backdrop-blur-md"
+      className="sticky top-0 z-50 border-b border-paper-edge bg-paper/90 backdrop-blur-md "
       role="banner"
     >
-      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-8 px-6 py-4 md:px-12">
+      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-8 px-6 py-8 md:px-12">
         <Link
           href="/"
           aria-label="Greater Hazelwood Community Collaborative, home"
