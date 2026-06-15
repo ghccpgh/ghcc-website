@@ -14,7 +14,7 @@ export const structure: StructureResolver = (S) =>
             .title('Content & Updates')
             .items([
               // S.documentTypeListItem('announcement').title('Announcements'),
-              S.documentTypeListItem('blog').title('Blog').icon(BookIcon),
+              S.documentTypeListItem('post').title('post').icon(BookIcon),
             ])
         ),
 
