@@ -137,7 +137,7 @@ export default function Nav() {
           }}
           onMouseLeave={handleMouseLeave}
         >
-          <div className={`border-t border-paper-edge shadow-lg ${isInSubSection ? "bg-paper-warm" : "bg-paper"}`}>
+          <div className={`border-t-2 border-t-red/30 border-b border-b-paper-edge shadow-[0_8px_24px_-4px_rgba(0,0,0,0.12),0_2px_8px_-2px_rgba(0,0,0,0.08)] ${isInSubSection ? "bg-paper-warm" : "bg-paper"}`}>
             <div className="mx-auto max-w-[1280px] px-6 py-8 md:px-12">
               <div className="flex items-start gap-16">
                 {/* Section title */}
