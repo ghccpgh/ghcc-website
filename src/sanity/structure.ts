@@ -15,6 +15,8 @@ export const structure: StructureResolver = (S) =>
             .items([
               // S.documentTypeListItem('announcement').title('Announcements'),
               S.documentTypeListItem('post').title('post').icon(BookIcon),
+
+            
             ])
         ),
 
@@ -67,6 +69,7 @@ export const structure: StructureResolver = (S) =>
               // S.listItem().title('Home').child(S.editor().schemaType('homePage').documentId('homePage')),
               // S.listItem().title('About').child(S.editor().schemaType('aboutPage').documentId('aboutPage')),
               // S.listItem().title('Contact').child(S.editor().schemaType('contactPage').documentId('contactPage')),
+                S.documentTypeListItem('testimonial').title('Community Voices').icon(UsersIcon),
             ])
         ),
     ])
