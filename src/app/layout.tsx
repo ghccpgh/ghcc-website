@@ -1,40 +1,30 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import ConditionalLayout from "@/components/layout/ConditionalLayout";
 
-const fraunces = Fraunces({
-  variable: "--font-display",
-  subsets: ["latin"],
-  display: 'swap'
-});
+import { Merriweather, Inter } from 'next/font/google'
 
-const inter = Inter({
-  variable: "--font-body",
-  subsets: ["latin"],
-});
+const serif = Merriweather({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-display',
+  display: 'swap',
+})
 
-export const metadata: Metadata = {
-  title: "Greater Hazlewood Community Collaborative",
-  description: "ghcc",
-};
+const sans = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-body',
+  display: 'swap',
+})
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${fraunces.variable} ${inter.variable}`}
-    >
+    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>
-        <Header />
-        {children}
-         <Footer />
+        <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
   );

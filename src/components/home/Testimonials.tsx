@@ -8,7 +8,7 @@ export default async function Testimonials() {
 
   return (
     <section
-      className="bg-paper-warm"
+      className="bg-ink"
       aria-labelledby="testimonials-heading"
     >
       <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-12 md:py-28">
@@ -19,7 +19,7 @@ export default async function Testimonials() {
 
           <h2
             id="testimonials-heading"
-            className="font-display text-3xl font-light tracking-tight text-ink sm:text-4xl md:text-5xl"
+            className="font-display text-3xl font-light tracking-tight text-paper sm:text-4xl md:text-5xl"
           >
             The people who make this{" "}
             <em className="font-normal italic text-red">community</em>
