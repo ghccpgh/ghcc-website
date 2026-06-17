@@ -2,7 +2,7 @@ import { client } from '@/sanity/lib/client'
 import { getAllAnnouncementsQuery } from '@/sanity/queries/announcement'
 import type { Announcement, AnnouncementCategory } from '@/types/announcement'
 
-export const revalidate = 0
+export const revalidate = 60
 
 export const metadata = {
   title: "What's Happening | Greater Hazelwood Community Collaborative",
