@@ -4,7 +4,7 @@ import { timelineData } from "@/data/timelineData";
 export default function Timeline() {
   return (
     <section
-      className="mx-auto max-w-[860px] px-6 py-16 md:px-12 md:py-24"
+      className="mx-auto max-w-[1000px] px-6 py-16 md:px-12 md:py-24"
       aria-labelledby="history-heading"
     >
       {/* Section header */}

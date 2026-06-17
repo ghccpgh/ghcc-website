@@ -4,19 +4,16 @@ import { TimelineItemData } from "@/types/timeline";
 // To be replaced with real pictures when we have them
 import img1870s from "@public/timeline-images/1870s.png";
 import imgRiver from "@public/timeline-images/The river and the mill.png";
-import imgPeak from "@public/timeline-images/Hazelwood birds eye view.png";
+import imgBirdsEye from "@public/timeline-images/Hazelwood birds eye view.png";
 import imgDemolition from "@public/timeline-images/Steel mill demolition.jpeg";
 import imgToday from "@public/timeline-images/Steel mill today.jpg";
-import imgBirdsEye from "@public/timeline-images/Hazlewood at its peak.jpeg";
 
 // Cycle through available images in order (to be updated too)
 const placeholders: StaticImageData[] = [
-  img1870s,
   imgRiver,
-  imgPeak,
+  img1870s,
   imgDemolition,
   imgToday,
-  imgBirdsEye,
 ];
 
 interface TimelineItemProps {
@@ -25,8 +22,12 @@ interface TimelineItemProps {
   isLast: boolean;
 }
 
-export default function TimelineItem({ item, index, isLast }: TimelineItemProps) {
-  const photo = placeholders[index % placeholders.length];
+export default function TimelineItem({
+  item,
+  index,
+  isLast,
+}: TimelineItemProps) {
+  const photo = placeholders[index];
 
   return (
     <li className="relative flex gap-8 md:gap-12">
@@ -35,9 +36,7 @@ export default function TimelineItem({ item, index, isLast }: TimelineItemProps)
         {/* dot */}
         <div className="z-10 mt-1 flex h-3 w-3 shrink-0 items-center justify-center rounded-full bg-red ring-4 ring-paper" />
         {/* line below dot */}
-        {!isLast && (
-          <div className="mt-2 w-px flex-1 bg-paper-edge" />
-        )}
+        {!isLast && <div className="mt-2 w-px flex-1 bg-paper-edge" />}
       </div>
 
       {/* Content */}
@@ -53,19 +52,19 @@ export default function TimelineItem({ item, index, isLast }: TimelineItemProps)
         </h3>
 
         {/* Body */}
-        <p className="mt-2 max-w-[52ch] font-body text-[0.95rem] leading-relaxed text-mute">
+        <p className="mt-2 max-w-[68ch] font-body text-[0.95rem] leading-relaxed text-mute">
           {item.description}
         </p>
 
         {/* Photo */}
         <div className="mt-5 overflow-hidden rounded-lg border border-paper-edge">
-          <div className="relative aspect-[16/9] w-full max-w-[420px]">
+          <div className="relative aspect-[16/9] w-full max-w-[420px] md:max-w-[560px]">
             <Image
               src={photo}
               alt={item.image.alt}
               fill
               className="object-cover"
-              sizes="(max-width: 640px) 100vw, 420px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 420px, 560px"
             />
           </div>
           {item.image.caption && (

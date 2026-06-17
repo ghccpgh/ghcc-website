@@ -59,7 +59,7 @@ export default function Hero() {
 
       {/* Dark overlay */}
       <div
-        className="absolute inset-0 z-0 bg-gradient-to-b from-ink/80 via-ink/70 to-ink/40"
+        className="absolute inset-0 z-0 bg-gradient-to-b from-ink/85 via-ink/75 to-ink/55"
         aria-hidden="true"
       />
 
@@ -72,7 +72,7 @@ export default function Hero() {
 
           <h1
             id="hero-heading"
-            className="font-display text-[clamp(2.75rem,7vw,5.75rem)] font-light leading-[0.98] tracking-tight text-paper"
+            className="font-display text-[clamp(2.75rem,7vw,5.75rem)] font-semibold leading-[0.98] tracking-tight text-paper"
           >
             A Community
             <br />
@@ -83,7 +83,7 @@ export default function Hero() {
             for.
           </h1>
 
-          <p className="mt-5 max-w-xl font-display text-base font-light leading-relaxed text-paper/85 sm:mt-8 sm:text-lg md:text-xl">
+          <p className="mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-paper/90 sm:mt-8 sm:text-lg md:text-xl">
             For over a century, Hazelwood has been home to steelworkers,
             families, and dreamers. The Greater Hazelwood Community
             Collaborative brings together residents, churches, and organizations
