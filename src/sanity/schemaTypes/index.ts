@@ -1,10 +1,7 @@
 import { type SchemaTypeDefinition } from 'sanity'
-import { post } from './documents/post';
-import { testimonial } from './documents/testimonial';
+import { post } from './documents/post'
+import { announcement } from './documents/announcement'  // curly braces now
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [post
-    , testimonial
-  ]
+  types: [post, announcement],
 }
-
