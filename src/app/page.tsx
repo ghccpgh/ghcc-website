@@ -1,16 +1,17 @@
 import Image from "next/image";
 
-
 //components
 import Hero from "@/components/home/Hero";
+import MissionStrip from "@/components/home/MissionStrip";
+import Programs from "@/components/home/Programs";
 import Timeline from "@/components/Timeline";
 import Testimonials from "@/components/home/Testimonials";
-import MissionStrip from "@/components/home/MissionStrip";
+
 
 
 export default function Home() {
   return (
-    <div className="">
+    <div>
       <Hero />
       <MissionStrip />
       <Timeline />
