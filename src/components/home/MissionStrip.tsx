@@ -49,7 +49,7 @@ export default function MissionStrip() {
 
             {/* Link to the full Mission page */}
             <Link
-              href="/mission"
+              href="/about/mission"
               className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-red transition-colors hover:text-red-soft"
             >
               Read our mission
