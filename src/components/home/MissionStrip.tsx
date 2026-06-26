@@ -1,5 +1,7 @@
 import missionImage from "@public/mission-strip-image.png"
 import Image from "next/image";
+import Link from 'next/link'
+
 
 export default function MissionStrip() {
   const stats = [
@@ -44,6 +46,17 @@ export default function MissionStrip() {
               , advancing economic, social, and physical well-being for every
               resident and stakeholder who calls this neighborhood home.
             </h2>
+
+            {/* Link to the full Mission page */}
+            <Link
+              href="/about/mission"
+              className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-red transition-colors hover:text-red-soft"
+            >
+              Read our mission
+              <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">
+                &rarr;
+              </span>
+            </Link>
           </div>
         </div>
 
