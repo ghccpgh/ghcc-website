@@ -3,7 +3,7 @@ import { post } from './documents/post'
 import { announcement } from './documents/announcement'
 import { testimonial } from './documents/testimonial'
 import { mission } from './documents/mission'
-import { boardMember } from './documents/boardmember'
+import { boardMember } from './documents/boardMember'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [post, announcement, testimonial, mission, boardMember],

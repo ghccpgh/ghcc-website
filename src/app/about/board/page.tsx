@@ -1,9 +1,10 @@
 import { client } from "@/sanity/lib/client";
-import { getBoardMembers } from "@/sanity/queries/boardmembers";
-import BoardCard from "@/components/BoardCards";
+import { boardMembersQuery } from "@/sanity/queries/boardMembers";
+import BoardCard from "@/components/BoardCard";
 
 export default async function BoardMembers() {
-  const members = await client.fetch(getBoardMembers);
+  const members = await client.fetch(boardMembersQuery);
+
 
   return (
     <main>
