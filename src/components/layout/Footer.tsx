@@ -88,15 +88,10 @@ export default function Footer() {
 
                         <div className="flex flex-wrap gap-2 text-paper-warm">
 
-                            <Link href="https://www.facebook.com/p/Greater-Hazelwood-Community-Collaborative-GHCC-100080329506283/" className="no-underline">
+                            <Link href="https://www.facebook.com/p/Greater-Hazelwood-Community-Collaborative-GHCC-100080329506283/" target="_blank" rel="noopener noreferrer "className="no-underline">
                                 Facebook
                             </Link>
 
-                            <span>·</span>
-
-                            <Link href="#" className="no-underline">
-                                Newsletter
-                            </Link>
 
                         </div>
 
