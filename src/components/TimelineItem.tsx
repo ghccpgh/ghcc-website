@@ -19,61 +19,70 @@ const placeholders: StaticImageData[] = [
 interface TimelineItemProps {
   item: TimelineItemData;
   index: number;
-  isLast: boolean;
+  isActive?: boolean;
 }
 
-export default function TimelineItem({
-  item,
-  index,
-  isLast,
-}: TimelineItemProps) {
-  const photo = placeholders[index];
+export default function TimelineItem({ item, index, isActive }: TimelineItemProps) {
+  const photo = placeholders[index % placeholders.length];
 
   return (
-    <li className="relative flex gap-8 md:gap-12">
-      {/* Left rail (dot + vertical line) */}
-      <div className="relative flex flex-col items-center" aria-hidden="true">
-        {/* dot */}
-        <div className="z-10 mt-1 flex h-3 w-3 shrink-0 items-center justify-center rounded-full bg-red ring-4 ring-paper" />
-        {/* line below dot */}
-        {!isLast && <div className="mt-2 w-px flex-1 bg-paper-edge" />}
+    <article className="relative flex items-center justify-center w-full h-full overflow-hidden">
+      
+      
+
+      {/* Continuous Squiggly Timeline Line */}
+      <div 
+        className="absolute top-[25%] left-0 w-full h-[20px] z-0 opacity-20"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 20 0, 40 10 T 80 10' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E")`,
+          backgroundRepeat: 'repeat-x'
+        }}
+      />
+
+      {/* Year Pill & Dot on the Line */}
+      <div className="absolute top-[25%] left-6 md:left-24 -translate-y-1/2 z-20 flex flex-col items-center">
+        <div className="absolute bottom-full mb-4 bg-ink text-paper text-sm md:text-base font-display py-1 px-4 rounded-full shadow-sm whitespace-nowrap transition-all duration-700 delay-100" style={{ opacity: isActive ? 1 : 0, transform: isActive ? 'translateY(0)' : 'translateY(10px)' }}>
+          {item.year}
+        </div>
+        <div className={`w-4 h-4 rounded-full border-[3px] border-ink bg-paper shadow-sm transition-all duration-700 ${isActive ? 'scale-125 bg-ink' : ''}`} />
       </div>
 
-      {/* Content */}
-      <div className={`pb-14 ${isLast ? "pb-0" : ""}`}>
-        {/* Year chip */}
-        <span className="mb-3 inline-block rounded-full border border-red/20 bg-red/5 px-3 py-0.5 font-body text-xs font-semibold uppercase tracking-[0.15em] text-red">
-          {item.year}
-        </span>
+      {/* Main Content Layout */}
+      <div className="relative z-10 w-full max-w-[1680px] mx-auto px-6 md:px-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-16 md:pt-24">
+        
+        {/* Text Content (Left) */}
+        <div className="flex flex-col justify-center order-2 md:order-1">
+          <h3 className="font-display text-4xl md:text-5xl font-medium text-ink mb-6 leading-tight transition-all duration-700 delay-200" style={{ opacity: isActive ? 1 : 0, transform: isActive ? 'translateY(0)' : 'translateY(20px)' }}>
+            {item.title}
+          </h3>
+          <p className="font-body text-lg md:text-xl leading-relaxed text-ink-soft max-w-[45ch] transition-all duration-700 delay-300" style={{ opacity: isActive ? 1 : 0, transform: isActive ? 'translateY(0)' : 'translateY(20px)' }}>
+            {item.description}
+          </p>
+        </div>
 
-        {/* Title */}
-        <h3 className="font-display text-xl font-medium leading-snug text-ink md:text-2xl">
-          {item.title}
-        </h3>
-
-        {/* Body */}
-        <p className="mt-2 max-w-[68ch] font-body text-[0.95rem] leading-relaxed text-mute">
-          {item.description}
-        </p>
-
-        {/* Photo */}
-        <div className="mt-5 overflow-hidden rounded-lg border border-paper-edge">
-          <div className="relative aspect-[16/9] w-full max-w-[420px] md:max-w-[560px]">
-            <Image
+        {/* Larger Non-Circular Image (Center/Right) */}
+        <div className="flex justify-center md:justify-end items-center order-1 md:order-2">
+          <div className="relative w-full max-w-[600px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-paper transition-transform duration-1000 ease-out" style={{ transform: isActive ? 'scale(1)' : 'scale(0.95)' }}>
+            <Image 
               src={photo}
               alt={item.image.alt}
               fill
-              className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 420px, 560px"
+              className={`object-cover transition-transform duration-[2000ms] ease-out ${
+                isActive ? "scale-100" : "scale-105"
+              }`}
+              sizes="(max-width: 768px) 100vw, 600px"
             />
+            {/* Overlay to fade image slightly when not active */}
+            <div className="absolute inset-0 bg-paper/20 mix-blend-overlay transition-opacity duration-700" style={{ opacity: isActive ? 0 : 1 }} />
+            {item.image.caption && (
+              <p className="absolute bottom-0 w-full border-t border-paper-edge bg-paper-warm/90 px-3 py-1.5 font-body text-[11px] italic text-mute/90 z-10 backdrop-blur-sm transition-opacity duration-700" style={{ opacity: isActive ? 1 : 0 }}>
+                {item.image.caption}
+              </p>
+            )}
           </div>
-          {item.image.caption && (
-            <p className="border-t border-paper-edge bg-paper-warm px-3 py-1.5 font-body text-[11px] italic text-mute/70">
-              {item.image.caption}
-            </p>
-          )}
         </div>
+        
       </div>
-    </li>
+    </article>
   );
 }
