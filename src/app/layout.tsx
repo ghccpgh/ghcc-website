@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import "./globals.css";
 
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
@@ -30,10 +31,6 @@ const sans = Montserrat({
   variable: '--font-body',
   display: 'swap',
 })
-// export const metadata: Metadata = {
-//   title: "Greater Hazelwood Community Collaborative",
-//   description: "A coalition of residents, faith leaders, nonprofits, and businesses working to ensure that Hazelwood's renaissance is shaped by — and benefits — the people who call this Pittsburgh neighborhood home.",
-// };
 
 // const serif = Bebas_Neue({
 //   weight: '400', // Bebas Neue only comes in a single heavy weight
