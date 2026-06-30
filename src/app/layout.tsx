@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import "./globals.css";
 
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
