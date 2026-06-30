@@ -19,10 +19,14 @@ const sans = Inter({
   variable: '--font-body',
   display: 'swap',
 })
+export const metadata: Metadata = {
+  title: "Greater Hazelwood Community Collaborative",
+  description: "A coalition of residents, faith leaders, nonprofits, and businesses working to ensure that Hazelwood's renaissance is shaped by — and benefits — the people who call this Pittsburgh neighborhood home.",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable}`} style={{ overflowX: 'hidden' }}>
       <body>
         <ConditionalLayout>{children}</ConditionalLayout>
       </body>

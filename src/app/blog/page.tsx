@@ -33,7 +33,7 @@ function FeaturedCard({ post, priority = false }: { post: BlogPostListItem; prio
     >
       {/* Image */}
       <div className="relative aspect-[3/2] w-full overflow-hidden bg-paper-warm">
-        {post.heroImage?.asset.url ? (
+        {post.heroImage?.asset?.url ? (
           <Image
             src={post.heroImage.asset.url}
             alt={post.heroImage.alt ?? ''}
@@ -81,7 +81,7 @@ function PostListRow({ post }: { post: BlogPostListItem }) {
       >
         {/* Thumbnail */}
         <div className="relative h-[90px] w-[130px] shrink-0 overflow-hidden rounded-lg bg-paper-warm sm:h-[100px] sm:w-[150px]">
-          {post.heroImage?.asset.url ? (
+          {post.heroImage?.asset?.url ? (
             <Image
               src={post.heroImage.asset.url}
               alt={post.heroImage.alt ?? ''}
