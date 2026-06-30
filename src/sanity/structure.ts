@@ -70,7 +70,6 @@ export const structure: StructureResolver = (S) =>
               S.listItem()
                 .title('Mission Page')
                 .child(S.editor().schemaType('mission').documentId('mission')),
-              S.documentTypeListItem('testimonial').title('Community Voices').icon(UsersIcon),
                 S.documentTypeListItem('testimonial').title('Community Voices').icon(UsersIcon),
                 S.documentTypeListItem('boardMember').title('Our Board').icon(UsersIcon)
             ])

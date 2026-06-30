@@ -39,7 +39,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </Link>
 
       {/* Hero image */}
-      {post.heroImage?.asset.url && (
+      {post.heroImage?.asset?.url && (
         <div className="mb-10 aspect-[16/9] overflow-hidden rounded-xl bg-paper-warm">
           <Image
             src={post.heroImage.asset.url}
