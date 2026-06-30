@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
 import Image from "next/image";
-import Droneshot from "@public/droneshot.png";
+import MembershipMeeting from "@public/ghcc-membership-meeting-june-2026.png";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -19,7 +18,7 @@ export default function Hero() {
         if (e.matches) {
           videoRef.current.pause();
         } else {
-          videoRef.current.play().catch(() => {});
+          videoRef.current.play().catch(() => { });
         }
       }
     };
@@ -29,84 +28,79 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
-      className="relative isolate flex min-h-svh items-center overflow-hidden md:min-h-[85vh]"
-      aria-labelledby="hero-heading"
-    >
-      {/* Video background */}
-      {/* <video
-        ref={videoRef}
-        className="absolute inset-0 -z-10 h-full w-full object-cover"
-        autoPlay={!prefersReducedMotion}
-        loop
-        muted
-        playsInline
-        poster="/video/hero-poster.jpg"
-        aria-hidden="true"
-      >
-        <source src="@/public/video/hero.webm" type="video/webm" />
-        <source src="@/public/video/hero.mp4" type="video/mp4" />
-      </video> */}
+    <section aria-labelledby="hero-heading">
 
-      <Image
-        src={Droneshot}
-        alt="A drone shot of the Hazelwood neighborhood, showing a mix of residential and industrial buildings with greenery in the background."
-        className="object-cover"
-        fill
-        sizes="100vw"
-        priority
-      />
+      {/* Image Banner (not full viewport) */}
+      <div className="relative w-full h-[45vh] md:h-[58vh] overflow-hidden">
+        <Image
+          src={MembershipMeeting}
+          alt="GHCC members at a community meeting in Hazelwood."
+          className="object-cover object-center"
+          fill
+          sizes="100vw"
+          priority
+        />
+        {/* Dark overlay for depth */}
+        <div className="absolute inset-0 bg-ink/40" aria-hidden="true" />
+      </div>
 
-      {/* Dark overlay */}
-      <div
-        className="absolute inset-0 z-0 bg-gradient-to-b from-ink/85 via-ink/75 to-ink/55"
-        aria-hidden="true"
-      />
+      {/* Text content — two-column layout below image */}
+      <div className="bg-paper border-b border-paper-edge">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-12">
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-4 py-16 sm:px-6 sm:py-20 md:px-12 md:py-32">
-        <div className="max-w-3xl">
-          <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-red-soft sm:mb-6 sm:text-xs">
-            Pittsburgh, Pennsylvania · Est. 2010
+          {/* Top label */}
+          <p className="pt-10 mb-6 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-red sm:text-xs">
+            Pittsburgh, Pennsylvania · Est. 2012
           </p>
 
-          <h1
-            id="hero-heading"
-            className="font-display text-[clamp(2.75rem,7vw,5.75rem)] font-semibold leading-[0.98] tracking-tight text-paper"
-          >
-            A Community
-            <br />
-            <em className="font-normal italic text-red-soft">
-              worth fighting
-            </em>
-            <br />
-            for.
-          </h1>
+          {/* Two-column: heading left, text + CTA right */}
+          <div className="flex flex-col gap-8 pb-14 md:flex-row md:items-start md:gap-16 lg:gap-24">
 
-          <p className="mt-5 max-w-xl font-body text-base font-normal leading-relaxed text-paper/90 sm:mt-8 sm:text-lg md:text-xl">
-            For over a century, Hazelwood has been home to steelworkers,
-            families, and dreamers. The Greater Hazelwood Community
-            Collaborative brings together residents, churches, and organizations
-            to shape what comes next.
-          </p>
+            {/* Left — large heading */}
+            <div className="md:w-1/2 lg:w-[45%]">
+              <h1
+                id="hero-heading"
+                className="font-bebas text-[clamp(3rem,6vw,5rem)] leading-[0.95] tracking-tight text-ink uppercase"
+              >
+                A Community{" "}
+                <em className="italic text-red">worth fighting</em>
+                <br />
+                for.
+              </h1>
+            </div>
 
-          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4">
-            < a
-              href="/about"
-              className="inline-block rounded-full bg-red px-7 py-3.5 text-center font-medium text-paper no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-paper hover:text-ink sm:py-4 sm:text-left"
-            >
-              Our story
-            </a>
-            
-            < a
-              href="/contact"
-              className="inline-block rounded-full border-[1.5px] border-paper bg-transparent px-7 py-3.5 text-center font-medium text-paper no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-paper hover:text-ink sm:py-4 sm:text-left"
-            >
-              Get involved →
-            </a>
+            {/* Right — paragraph + buttons */}
+            <div className="md:w-1/2 lg:w-[55%] flex flex-col justify-center gap-8 md:pt-2">
+              <p className="font-body text-base leading-relaxed text-ink-soft sm:text-lg md:text-xl">
+                For over a century, Hazelwood has been home to steelworkers,
+                families, and dreamers. The{" "}
+                <strong className="font-semibold text-ink">
+                  Greater Hazelwood Community Collaborative
+                </strong>{" "}
+                brings together residents, churches, and organizations to shape
+                what comes next.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="/about"
+                  className="inline-block rounded-full bg-red px-7 py-3.5 font-medium text-paper no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-red-dark"
+                >
+                  Our story
+                </a>
+                <a
+                  href="/contact"
+                  className="inline-block rounded-full border-[1.5px] border-ink bg-transparent px-7 py-3.5 font-medium text-ink no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink hover:text-paper"
+                >
+                  Get involved →
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
+
     </section>
   );
 }

@@ -80,9 +80,6 @@ export default function Timeline() {
       {/* Intro Header */}
       <div className="mx-auto max-w-[1680px] w-full px-6 md:px-24 mb-4 md:mb-8 flex-shrink-0">
         <div className="max-w-[720px]">
-          <p className="font-body text-xs font-semibold tracking-[0.18em] uppercase text-red mb-2 md:mb-4">
-            Chapter One
-          </p>
           <h2 id="history-heading" className="font-display text-3xl font-light tracking-tight text-ink sm:text-4xl md:text-5xl">
             The story of <em className="font-normal italic text-red">Hazelwood</em>.
           </h2>

@@ -10,18 +10,17 @@ export default function MissionPage() {
     <main className="min-h-screen bg-paper pt-32 pb-20">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-paper text-ink">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-12 pb-20 text-center">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-12 pb-20">
           <p className="font-mono text-xs tracking-[0.22em] uppercase text-red mb-6 rise">Our Mission</p>
-          <h1 className="font-display font-normal text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight max-w-[20ch] mx-auto mb-8 rise d1">
+          <h1 className="font-display font-normal text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight max-w-[20ch] mb-8 rise d1">
             Development that happens <em className="italic text-red">with</em> the community, never <em className="italic text-red">to</em> it.
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-mute mb-10 rise d2">
+          <p className="max-w-2xl text-lg text-mute mb-10 rise d2">
             We align people, partners, and resources to build a stronger Greater Hazelwood, advancing the economic, social, and physical well-being of every resident and stakeholder who calls this neighborhood home.
           </p>
           <div className="inline-flex items-center gap-3 font-mono text-xs tracking-[0.12em] uppercase text-mute rise d3">
-            <span className="w-6 h-[1px] bg-paper-edge"></span>
+            <span className="w-[26px] h-[1px] bg-paper-edge"></span>
             Adopted in the GHCC Bylaws
-            <span className="w-6 h-[1px] bg-paper-edge"></span>
           </div>
         </div>
       </section>
@@ -98,12 +97,12 @@ export default function MissionPage() {
 
       {/* CTA Section */}
       <section className="py-24 bg-paper border-t border-paper-edge">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-12 text-center">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-12 flex flex-col items-center text-center">
           <p className="font-mono text-xs tracking-[0.22em] uppercase text-red mb-4 inline-block">Join the table</p>
           <h2 className="font-display font-normal text-3xl md:text-4xl lg:text-[3rem] leading-[1.08] mb-8 text-ink">
             This work belongs to all of us.
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-center text-mute mb-10">
+          <p className="max-w-2xl text-lg text-center text-mute mb-10">
             Membership is open to nonprofits, community groups, businesses, churches, and institutions working for the betterment of Greater Hazelwood. Come to a meeting, or bring your organization into the Collaborative.
           </p>
           <Link href="/contact" className="inline-block rounded-full bg-red px-8 py-4 font-semibold text-paper transition-all duration-200 hover:bg-red-dark hover:shadow-lg active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red">

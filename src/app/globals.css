@@ -28,6 +28,7 @@
     --font-display: "Merriweather", Georgia, "Times New Roman", serif;
     --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, sans-serif;
+    --font-bebas: "Bebas Neue", sans-serif;
 
 
     /* Type scale */
@@ -83,6 +84,7 @@
 
     --font-display: var(--font-display);
     --font-body: var(--font-body);
+    --font-bebas: var(--font-bebas);
 }
 
 /* Reset the view port */
