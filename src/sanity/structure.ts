@@ -29,28 +29,9 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title('The Neighborhood')
             .items([
-              S.listItem()
-                .title('Partners — Community')
-                .child(
-                  S.documentList()
-                    .title('Community Partners')
-                    .filter('_type == "partner" && partnerType == "community"')
-                    .defaultOrdering([
-                      { field: 'order', direction: 'asc' },
-                      { field: 'name',  direction: 'asc' },
-                    ])
-                ),
-              S.listItem()
-                .title('Partners — Non-Community')
-                .child(
-                  S.documentList()
-                    .title('Non-Community Partners')
-                    .filter('_type == "partner" && partnerType == "nonCommunity"')
-                    .defaultOrdering([
-                      { field: 'order', direction: 'asc' },
-                      { field: 'name',  direction: 'asc' },
-                    ])
-                ),
+              S.documentTypeListItem('partner')
+                .title('Partners')
+                .icon(UsersIcon),
             ])
         ),
 

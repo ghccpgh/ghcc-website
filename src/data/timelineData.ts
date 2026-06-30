@@ -27,7 +27,7 @@ export const timelineData: TimelineItemData[] = [
     year: "1998",
     title: "The mill closes",
     description:
-      "The last coke ovens shut down. Thousands of jobs vanish. The neighborhood reels — but residents stay, organize, and begin imagining what Hazelwood can become without the industry that built it.",
+      "The last coke ovens shut down, taking away thousands of jobs along the way. The mill's closing gutted the neighborhood. But people stayed. They organized, and they started asking what Hazelwood could be without the industry that had defined it.",
     image: {
       src: "/images/timeline/mill-closure-1998.jpg",
       alt: "The coke ovens at the Hazelwood mill on their last day of operation",
@@ -38,11 +38,11 @@ export const timelineData: TimelineItemData[] = [
     year: "Today",
     title: "A community-led future",
     description:
-      "The Collaborative was founded by residents who believed Hazelwood's next chapter should be written by the people who live here. Through Hazelwood Green's redevelopment, affordable housing advocacy, and youth programs, we're building forward — without leaving anyone behind.",
+      "The Collaborative was founded by residents who believed Hazelwood's next chapter should be written by the people who live here. Through Hazelwood Green's redevelopment, affordable housing advocacy, and youth programs, we're building forward, without leaving anyone behind.",
     image: {
-      src: "/images/timeline/hazelwood-today.jpg",
+      src: "/images/ghcc-membership-meeting-june-2026.png",
       alt: "Community members at a GHCC event in Hazelwood",
-      caption: "Hazelwood Green redevelopment, 2024",
+      caption: "Hazelwood Green redevelopment, 2026",
     },
   }
 ];
