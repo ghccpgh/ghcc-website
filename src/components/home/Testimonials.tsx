@@ -2,7 +2,6 @@ import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import { testimonialsQuery } from "@/sanity/queries/testimonials";
 import { urlFor } from "@/sanity/lib/image";
-
 export default async function Testimonials() {
   const testimonials = await client.fetch(testimonialsQuery);
 
