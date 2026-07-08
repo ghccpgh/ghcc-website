@@ -2,7 +2,7 @@ import { client } from "@/sanity/lib/client";
 import { communityPartnersQuery } from "@/sanity/queries/partners";
 import PartnerCard from "./PartnerCard";
 
-export default async function CommunityPartners() {
+export default async function CommunityPartners({ size = "default" }: { size?: "default" | "large" }) {
   const partners = await client.fetch(communityPartnersQuery);
 
   if (!partners || partners.length === 0) return null;
@@ -22,13 +22,14 @@ export default async function CommunityPartners() {
           </p>
         </div>
 
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className={`grid grid-cols-1 sm:grid-cols-2 ${size === "large" ? "gap-5 lg:grid-cols-3" : "gap-4 lg:grid-cols-3 xl:grid-cols-4"}`}>
           {partners.map((partner: any) => (
             <PartnerCard
               key={partner._id}
               name={partner.name}
               description={partner.description || ""}
               image={partner.image}
+              size={size}
             />
           ))}
         </div>
