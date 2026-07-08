@@ -9,6 +9,8 @@ import CommunityPartners from "@/components/home/CommunityPartners";
 import NonCommunityPartners from "@/components/home/NonCommunityPartners";
 import Newsletter from "@/components/home/Newsletter";
 
+export const revalidate = 60
+
 export default function Home() {
   return (
     <div>
