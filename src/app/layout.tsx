@@ -3,16 +3,16 @@ import "./globals.css";
 
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
 
-import { Merriweather, Inter, Montserrat, Bebas_Neue, Oswald, League_Gothic } from 'next/font/google'
+import { Merriweather, Inter, Montserrat, Bebas_Neue, Oswald, Barlow } from 'next/font/google'
 
 
-const serif =  Merriweather({
-  subsets: ['latin'],
-  weight: ['300', '400', '700'],
-  style: ['normal'],
-  variable: '--font-display',
-  display: 'swap',
-})
+// const serif =  Merriweather({
+//   subsets: ['latin'],
+//   weight: ['300', '400', '700'],
+//   style: ['normal'],
+//   variable: '--font-display',
+//   display: 'swap',
+// })
 
 
 
@@ -32,11 +32,11 @@ const sans = Montserrat({
   display: 'swap',
 })
 
-// const serif = Bebas_Neue({
-//   weight: '400', // Bebas Neue only comes in a single heavy weight
-//   subsets: ['latin'],
-//   variable: '--font-display',
-// })
+const serif = Barlow({
+  weight: ['900'],  
+  subsets: ['latin'],
+  variable: '--font-display',
+})
 
 export const metadata: Metadata = {
   title: "Greater Hazelwood Community Collaborative",

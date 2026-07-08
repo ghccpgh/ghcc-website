@@ -142,28 +142,28 @@ const sectionDescriptions: Record<string, string> = {
           }}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="bg-ink text-paper shadow-[0_8px_24px_-4px_rgba(0,0,0,0.25)]">
+          <div className="border-t border-paper-edge bg-paper text-ink shadow-[0_8px_24px_-4px_rgba(0,0,0,0.15)]">
             <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-12 md:py-16">
               <div className="grid grid-cols-1 gap-12 md:grid-cols-[minmax(220px,0.8fr)_1px_1.2fr]">
                 {/* Left column: section intro */}
                 <div className="flex flex-col">
-                  <h2 className="font-display text-2xl font-normal leading-tight text-paper md:text-3xl">
+                  <h2 className="font-display text-2xl font-normal leading-tight text-ink md:text-3xl">
                     {openItem?.label}
                   </h2>
-                  <p className="mt-4 max-w-[28ch] text-base leading-relaxed text-paper/70">
+                  <p className="mt-4 max-w-[28ch] text-base leading-relaxed text-ink/70">
                     {sectionDescriptions[openItem?.href ?? ""] ?? ""}
                   </p>
                   <Link
                     href={openItem?.href ?? "#"}
                     aria-label={`${openItem?.label} overview`}
-                    className="group mt-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-paper/40 text-paper transition-all duration-200 hover:border-paper hover:bg-paper hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
+                    className="group mt-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-ink/40 text-ink transition-all duration-200 hover:border-ink hover:bg-ink hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                   >
                     <span aria-hidden="true" className="text-lg">→</span>
                   </Link>
                 </div>
 
                 {/* Vertical divider */}
-                <div className="hidden bg-paper/15 md:block" aria-hidden="true" />
+                <div className="hidden bg-ink/15 md:block" aria-hidden="true" />
 
                 {/* Right column: sub-links as a vertical list */}
                 <ul className="flex flex-col">
@@ -173,19 +173,19 @@ const sectionDescriptions: Record<string, string> = {
                         href={child.href}
                         aria-current={isActive(child.href) ? "page" : undefined}
                         className={`
-                          group flex items-center justify-between border-b border-paper/10 py-4
+                          group flex items-center justify-between border-b border-ink/10 py-4
                           font-display text-lg no-underline transition-colors duration-200
                           ${
                             isActive(child.href)
-                              ? "text-red-soft"
-                              : "text-paper hover:text-red-soft"
+                              ? "text-red"
+                              : "text-ink hover:text-red"
                           }
                         `}
                       >
                         {child.label}
                         <span
                           aria-hidden="true"
-                          className="translate-x-0 text-paper/40 transition-all duration-200 group-hover:translate-x-1 group-hover:text-red-soft"
+                          className="translate-x-0 text-ink/40 transition-all duration-200 group-hover:translate-x-1 group-hover:text-red"
                         >
                           →
                         </span>

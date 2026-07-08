@@ -5,27 +5,37 @@ interface PartnerProps {
   name: string;
   description: string;
   image?: any;
+  size?: "default" | "large";
 }
 
-export default function PartnerCard({ name, description, image }: PartnerProps) {
+export default function PartnerCard({ name, description, image, size = "default" }: PartnerProps) {
+  const isLarge = size === "large";
   return (
-    <article className="flex items-center gap-4 rounded-xl bg-paper p-4 shadow-sm transition-all hover:shadow-md border border-paper-edge hover:border-red/20">
-      <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md bg-paper-edge flex items-center justify-center">
+    <article
+      className={`flex items-center rounded-xl bg-paper shadow-sm transition-all hover:shadow-md border border-paper-edge hover:border-red/20 ${
+        isLarge ? "gap-5 p-6" : "gap-4 p-4"
+      }`}
+    >
+      <div
+        className={`relative flex-shrink-0 overflow-hidden bg-paper-edge flex items-center justify-center ${
+          isLarge ? "h-20 w-20 rounded-lg" : "h-16 w-16 rounded-md"
+        }`}
+      >
         {image ? (
           <Image
-            src={typeof image === 'string' ? image : urlFor(image).width(200).height(200).url()}
+            src={typeof image === 'string' ? image : urlFor(image).width(isLarge ? 300 : 200).height(isLarge ? 300 : 200).url()}
             alt={name}
             fill
             className="object-cover"
-            sizes="64px"
+            sizes={isLarge ? "80px" : "64px"}
           />
         ) : (
-          <span className="text-xs text-mute font-medium">Logo</span>
+          <span className={`text-mute font-medium ${isLarge ? "text-sm" : "text-xs"}`}>Logo</span>
         )}
       </div>
       <div className="flex flex-col">
-        <h3 className="text-sm font-semibold text-ink leading-tight mb-1">{name}</h3>
-        <p className="text-xs text-ink-soft line-clamp-2">{description}</p>
+        <h3 className={`font-semibold text-ink leading-tight ${isLarge ? "text-base mb-1.5" : "text-sm mb-1"}`}>{name}</h3>
+        <p className={`text-ink-soft line-clamp-2 ${isLarge ? "text-sm" : "text-xs"}`}>{description}</p>
       </div>
     </article>
   );
