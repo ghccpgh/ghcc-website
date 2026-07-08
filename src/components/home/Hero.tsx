@@ -60,7 +60,7 @@ export default function Hero() {
             <div className="md:w-1/2 lg:w-[45%]">
               <h1
                 id="hero-heading"
-                className="font-bebas text-[clamp(3rem,6vw,5rem)] leading-[0.95] tracking-tight text-ink uppercase"
+                className="font-display text-[clamp(3rem,6vw,4rem)] leading-[0.95] tracking-tight text-ink uppercase"
               >
                 A Community{" "}
                 <em className="italic text-red">worth fighting</em>

@@ -13,7 +13,7 @@ export default function Header() {
         <Link
           href="/"
           aria-label="Greater Hazelwood Community Collaborative, home"
-          className="flex items-center gap-3 no-underline"
+          className="flex flex-row items-center gap-3 no-underline"
         >
           <Image
             src={logo}
