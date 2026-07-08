@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import communityMtg1 from '@public/Community_Mtg_1.png';
 
 export const metadata = {
   title: "Our Mission | GHCC",
@@ -26,10 +28,18 @@ export default function MissionPage() {
       </section>
 
       {/* Principle Section */}
-      <section className="py-24 bg-paper-warm">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-14 items-start">
-            <div>
+      <section className="bg-paper-warm">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative min-h-[400px] md:min-h-0 w-full overflow-hidden">
+            <Image 
+              src={communityMtg1} 
+              alt="Community Meeting" 
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="flex flex-col justify-center px-6 py-20 md:px-12 md:py-24 lg:px-16">
+            <div className="mb-8">
               <p className="font-mono text-xs tracking-[0.22em] uppercase text-red mb-4">The promise at the center</p>
               <h2 className="font-display font-normal text-3xl md:text-4xl lg:text-[2.7rem] leading-[1.1] tracking-tight text-ink">
                 Develop <span className="bg-gradient-to-t from-red-soft/40 to-transparent bg-no-repeat bg-[length:100%_45%] bg-bottom px-1">without displacement</span>
@@ -85,11 +95,11 @@ export default function MissionPage() {
       <section className="py-24 bg-paper-warm text-ink relative overflow-hidden">
         <span className="absolute font-display text-[22rem] leading-none text-red/5 -top-12 -left-4 pointer-events-none select-none" aria-hidden="true">&ldquo;</span>
         <div className="mx-auto max-w-[1280px] px-6 md:px-12 relative z-10">
-          <blockquote className="font-display font-normal italic text-3xl md:text-4xl lg:text-[2.9rem] leading-[1.22] tracking-tight max-w-[20ch]">
-            Never let them build around you, and you&rsquo;re not in the center.
+          <blockquote className="font-display font-normal italic text-3xl md:text-4xl lg:text-[2.9rem] leading-[1.22] tracking-tight max-w-[40ch]">
+            Development was coming to the community, and we didn’t want it to just happen to us. We wanted it to happen with us and through us.
             <cite className="block mt-8 not-italic font-mono text-[0.78rem] tracking-[0.12em] uppercase text-red">
-              Reverend Michael Murray Sr.
-              <span className="block mt-1 text-mute tracking-[0.08em] normal-case font-body">Founding member, Greater Hazelwood resident</span>
+              Pastor Tim Smith.
+              <span className="block mt-1 text-mute tracking-[0.08em] normal-case font-body">President of GHCC, Greater Hazelwood resident</span>
             </cite>
           </blockquote>
         </div>

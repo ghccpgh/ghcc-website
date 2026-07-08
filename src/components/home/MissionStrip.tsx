@@ -1,4 +1,4 @@
-import missionImage from "@public/ghcc-membership-meeting-june-2026.png"
+import missionImage from "@public/Community_Mtg_2.png"
 import Image from "next/image";
 import Link from 'next/link'
 

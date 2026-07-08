@@ -149,13 +149,5 @@ p {
 }
 
 a {
-    text-decoration: underline;
-    text-decoration-color: var(--color-paper-edge);
-    text-underline-offset: 3px;
-    transition: text-decoration-color var(--duration-base) var(--ease-out),
-        color var(--duration-base) var(--ease-out);
-}
-
-a:hover {
-    text-decoration-color: var(--color-red);
+    text-decoration: none;
 }
