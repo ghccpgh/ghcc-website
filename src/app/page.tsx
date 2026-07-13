@@ -16,7 +16,7 @@ export default function Home() {
     <div>
       <Hero />
       <MissionStrip />
-      <Timeline />
+      {/* <Timeline /> */}
       <CommunityPartners />
       <NonCommunityPartners />
       <Testimonials />
