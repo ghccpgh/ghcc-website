@@ -5,10 +5,17 @@ import BoardCard from "@/components/BoardCard";
 export default async function BoardMembers() {
   const members = await client.fetch(boardMembersQuery);
 
+  const executiveCommittee = members.filter(
+    (member: any) => member.boardGroup === "executive"
+  );
+
+  const committeeChairs = members.filter(
+    (member: any) => member.boardGroup === "chair"
+  );
 
   return (
     <main>
-      
+    
       <section className="border-b border-paper-edge bg-paper-warm">
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-12 md:py-28">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-red">
@@ -44,10 +51,15 @@ export default async function BoardMembers() {
         </div>
       </section>
 
+  
       <section>
-        <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-12 md:py-16">
+        <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-12">
+          <h2 className="mb-8 font-display text-3xl text-ink">
+            Executive Committee
+          </h2>
+
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {members.map((member: any) => (
+            {executiveCommittee.map((member: any) => (
               <BoardCard
                 key={member._id}
                 member={member}
@@ -57,6 +69,25 @@ export default async function BoardMembers() {
         </div>
       </section>
 
+  
+      <section>
+        <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-12 md:pb-20">
+          <h2 className="mb-8 font-display text-3xl text-ink">
+            Committee Chairs
+          </h2>
+
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {committeeChairs.map((member: any) => (
+              <BoardCard
+                key={member._id}
+                member={member}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      
       <section className="border-t border-paper-edge bg-paper-warm">
         <div className="mx-auto max-w-[900px] px-6 py-20 text-center md:px-12">
           <h2 className="font-display text-3xl text-ink md:text-4xl">
@@ -70,18 +101,7 @@ export default async function BoardMembers() {
 
           <a
             href="/contact"
-            className="
-              mt-10 inline-flex items-center
-              rounded-full
-              bg-red
-              px-6 py-3
-              font-medium
-              text-white
-              no-underline
-              transition-all
-              duration-300
-              hover:bg-red-dark
-            "
+            className="mt-10 inline-flex items-center rounded-full bg-red px-6 py-3 font-medium text-white no-underline transition-all duration-300 hover:bg-red-dark"
           >
             Contact Us
           </a>
