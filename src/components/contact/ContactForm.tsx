@@ -11,6 +11,7 @@ export default function ContactForm() {
     lastName: "",
     email: "",
     message: "",
+    company: "", // honeypot (to catch bots)
   });
 
   const MAX_CHARS = 500;
@@ -52,20 +53,35 @@ export default function ContactForm() {
     setResult(null);
 
     try {
-      await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      // If fetch didn't throw, the request was sent successfully
-      setResult({ success: true, message: "Thank you for your message. We'll get back to you soon." });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setResult({
+          success: false,
+          message: data.error ?? "Something went wrong. Please try again.",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      setResult({
+        success: true,
+        message: "Thank you for your message. We'll get back to you soon.",
+      });
       localStorage.setItem("contact_last_submit", Date.now().toString());
       setCooldown(60);
-      setFormData({ firstName: "", lastName: "", email: "", message: "" });
+      setFormData({ firstName: "", lastName: "", email: "", message: "", company: "" });
     } catch {
-      setResult({ success: false, message: "Something went wrong. Please try again." });
+      setResult({
+        success: false,
+        message: "Could not send. Please check your connection and try again.",
+      });
     }
 
     setIsSubmitting(false);
@@ -74,7 +90,10 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="mx-auto max-w-2xl bg-paper-warm p-8 rounded-2xl border border-paper-edge shadow-[0_8px_24px_-4px_rgba(0,0,0,0.12),0_2px_8px_-2px_rgba(0,0,0,0.08)]">
       {result && (
-        <div className={`mb-6 p-4 rounded-xl text-sm font-medium ${result.success ? "bg-[#d1fae5] text-[#065f46]" : "bg-[#fee2e2] text-red-dark"}`}>
+        <div
+          role={result.success ? "status" : "alert"}
+          className={`mb-6 p-4 rounded-xl text-sm font-medium ${result.success ? "bg-[#d1fae5] text-[#065f46]" : "bg-[#fee2e2] text-red-dark"}`}
+        >
           {result.message}
         </div>
       )}
@@ -89,6 +108,7 @@ export default function ContactForm() {
             id="firstName"
             name="firstName"
             required
+            autoComplete="given-name"
             disabled={isSubmitting || cooldown > 0}
             value={formData.firstName}
             onChange={handleChange}
@@ -105,6 +125,7 @@ export default function ContactForm() {
             id="lastName"
             name="lastName"
             required
+            autoComplete="family-name"
             disabled={isSubmitting || cooldown > 0}
             value={formData.lastName}
             onChange={handleChange}
@@ -123,6 +144,7 @@ export default function ContactForm() {
           id="email"
           name="email"
           required
+          autoComplete="email"
           disabled={isSubmitting || cooldown > 0}
           value={formData.email}
           onChange={handleChange}
@@ -153,6 +175,20 @@ export default function ContactForm() {
         </div>
       </div>
 
+      {/* Honeypot, a hidden from humans and screen readers. Bots fill it, we reject */}
+      <div aria-hidden="true" className="absolute left-[-9999px]" tabIndex={-1}>
+        <label htmlFor="company">Company (leave this blank)</label>
+        <input
+          type="text"
+          id="company"
+          name="company"
+          tabIndex={-1}
+          autoComplete="off"
+          value={formData.company}
+          onChange={handleChange}
+        />
+      </div>
+
       <button
         type="submit"
         disabled={isSubmitting || cooldown > 0 || formData.message.length === 0}
@@ -163,4 +199,3 @@ export default function ContactForm() {
     </form>
   );
 }
-
