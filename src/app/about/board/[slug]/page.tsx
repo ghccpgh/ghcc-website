@@ -107,7 +107,6 @@ export default async function BoardMemberPage({
         </div>
 
 
-
         <div className="text-lg leading-relaxed text-ink-soft">
 
           <h2 className="mb-5 font-display text-3xl text-ink">
