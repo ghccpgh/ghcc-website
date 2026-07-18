@@ -1,13 +1,13 @@
 import { groq } from "next-sanity";
 
-
 const BOARD_MEMBER_PROJECTION = `
   _id,
   name,
   "slug": slug.current,
   role,
   boardGroup,
-  excerpt,
+  email,
+  description,
   bio,
   sortOrder,
   image
