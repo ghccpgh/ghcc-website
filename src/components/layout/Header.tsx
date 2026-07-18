@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/../public/ghcc-logo.png"; 
+import logo from "@/../public/ghcc-logo.png";
 import Nav from "./Nav";
 
 export default function Header() {
@@ -9,7 +9,7 @@ export default function Header() {
       className="sticky top-0 z-50 border-b border-paper-edge bg-paper/90 backdrop-blur-md "
       role="banner"
     >
-      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-8 px-6 py-8 md:px-12">
+      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-4 py-4 sm:gap-8 sm:px-6 md:px-12 md:py-8">
         <Link
           href="/"
           aria-label="Greater Hazelwood Community Collaborative, home"
