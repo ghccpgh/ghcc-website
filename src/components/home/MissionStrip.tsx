@@ -37,7 +37,7 @@ export default function MissionStrip() {
             </p>
             <h2
               id="mission-strip-heading"
-              className="font-display text-xl font-light leading-[1.3] tracking-tight text-paper sm:text-2xl md:text-[1.75rem]"
+              className="font-body text-xl font-light leading-[1.3] tracking-tight text-paper sm:text-2xl md:text-[1.75rem]"
             >
               We align people, partners, and resources to build a{" "}
               <em className="font-normal italic text-red-soft">

@@ -8,7 +8,7 @@ import hazPeak from "@public/timeline-images/Hazlewood at its peak.jpeg";
 import steelDemolition from "@public/timeline-images/Steel mill demolition.jpeg";
 import steelMillToday from "@public/timeline-images/Steel mill today.jpg";
 import historicHaz from "@public/Historic HAZ p23.png";
-import droneshot from "@public/droneshot.png";
+import droneshot from "@public/hazlewood-droneshot-of-the-neighborhood.png";
 import hazelwoodGarden from "@public/Hazelwood Garden p10.jpg";
 import communityMtg from "@public/Community_Mtg_2.png";
 import membersMeeting from "@public/ghcc-membership-meeting-june-2026.png";
