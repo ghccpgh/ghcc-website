@@ -36,12 +36,12 @@ export default async function BoardMembers() {
 
 
       <section>
-        <div className="mx-auto max-w-[900px] px-6 py-16 md:px-12">
+        <div className="mx-auto max-w-[900px] px-6 py-16 md:px-12 flex flex-col gap-6">
           <h2 className="font-display text-3xl text-ink">
             About the Board
           </h2>
 
-          <p className="mt-6 text-lg leading-relaxed text-ink-soft">
+          <p className="text-lg leading-relaxed text-ink-soft">
             The Board of Directors provides leadership, oversight, and
             strategic direction for GHCC. Board members bring diverse
             experiences and perspectives while working together to support
@@ -53,8 +53,8 @@ export default async function BoardMembers() {
 
   
       <section>
-        <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-12">
-          <h2 className="mb-8 font-display text-3xl text-ink">
+        <div className="mx-auto flex max-w-[1280px] flex-col gap-12 px-6 py-12 md:px-12 md:pb-20">
+          <h2 className="font-display text-[2.3rem] text-ink">
             Executive Committee
           </h2>
 
@@ -71,8 +71,8 @@ export default async function BoardMembers() {
 
   
       <section>
-        <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-12 md:pb-20">
-          <h2 className="mb-8 font-display text-3xl text-ink">
+        <div className="mx-auto flex max-w-[1280px] flex-col gap-12 px-6 py-12 md:px-12 md:pb-20">
+          <h2 className="font-display text-[2.3rem] text-ink">
             Committee Chairs
           </h2>
 

@@ -83,29 +83,28 @@ export default function Footer() {
                     </div>
 
                     {/* Visit */}
-                    <div className="lg:col-span-3">
+                    <div className="lg:col-span-3 flex flex-col gap-5">
 
-                        <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-red">
-                            Visit
-                        </h3>
+                        <div>
+                            <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-red">
+                                Visit
+                            </h3>
+                            <p className="text-sm text-paper-warm/80">
+                                5125 Second Avenue
+                            </p>
+                            <p className="text-sm text-paper-warm/80">
+                                Pittsburgh, PA 15207
+                            </p>
+                        </div>
 
-                        <p className="text-sm text-paper-warm/80">
-                            5125 Second Avenue
-                        </p>
-                        <p className="text-sm text-paper-warm/80">
-                            Pittsburgh, PA 15207
-                        </p>
-
-                        <h3 className="mb-5 mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-red">
-                            Contact
-                        </h3>
-
-                        <p className="text-sm text-paper-warm/80">
-                            hello@hazelwoodcollab.org
-                        </p>
-                        <p className="text-sm text-paper-warm/80">
-                            (412) 555-0100
-                        </p>
+                        <div>
+                            <h3 className="mb-5 mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-red">
+                                Contact
+                            </h3>
+                            <a href="mailto:contact.ghcc@gmail.com" className="text-sm text-paper-warm/80">
+                                contact.ghcc@gmail.com
+                            </a>
+                        </div>
 
                     </div>
 
@@ -140,10 +139,10 @@ export default function Footer() {
                     </p>
 
                     <div className="flex gap-6 text-sm text-mute">
-                        <Link href="#" className="no-underline transition-colors hover:text-paper">
+                        <Link href="/privacy" className="no-underline transition-colors hover:text-paper">
                             Privacy Policy
                         </Link>
-                        <Link href="#" className="no-underline transition-colors hover:text-paper">
+                        <Link href="/accessibility" className="no-underline transition-colors hover:text-paper">
                             Accessibility
                         </Link>
                     </div>

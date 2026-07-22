@@ -26,6 +26,14 @@ export const partner = defineType({
             },
         }),
         defineField({
+            name: "link",
+            title: "Website Link",
+            type: "url",
+            description: "External website URL for this partner.",
+            validation: (Rule) =>
+                Rule.uri({ allowRelative: false, scheme: ["http", "https"] }),
+        }),
+        defineField({
             name: "partnerType",
             title: "Partner Type",
             type: "string",

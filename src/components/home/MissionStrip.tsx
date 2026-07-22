@@ -37,14 +37,9 @@ export default function MissionStrip() {
             </p>
             <h2
               id="mission-strip-heading"
-              className="font-body text-xl font-light leading-[1.3] tracking-tight text-paper sm:text-2xl md:text-[1.75rem]"
+              className="font-body text-lg font-light leading-[1.3] tracking-tight text-paper sm:text-2xl md:text-[1.75rem]"
             >
-              We align people, partners, and resources to build a{" "}
-              <em className="font-normal italic text-red-soft">
-                stronger Greater Hazelwood
-              </em>
-              , advancing economic, social, and physical well-being for every
-              resident and stakeholder who calls this neighborhood home.
+              The Greater Hazelwood Community Collaborative, also known as the GHCC, is an organization of organizations active in the Greater Hazelwood community that exists to uniformly align resources to achieve outcomes for all Greater Hazelwood residents and stakeholders.{" "}
             </h2>
 
             {/* Link to the full Mission page */}

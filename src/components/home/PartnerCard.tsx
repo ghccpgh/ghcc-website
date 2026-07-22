@@ -5,16 +5,18 @@ interface PartnerProps {
   name: string;
   description: string;
   image?: any;
+  link?: string;
   size?: "default" | "large";
 }
 
-export default function PartnerCard({ name, description, image, size = "default" }: PartnerProps) {
+export default function PartnerCard({ name, description, image, link, size = "default" }: PartnerProps) {
   const isLarge = size === "large";
-  return (
+
+  const card = (
     <article
-      className={`flex items-center rounded-xl bg-paper shadow-sm transition-all hover:shadow-md border border-paper-edge hover:border-red/20 ${
-        isLarge ? "gap-5 p-6" : "gap-4 p-4"
-      }`}
+      className={`flex items-center rounded-xl bg-paper shadow-sm transition-all border border-paper-edge ${
+        link ? "cursor-pointer hover:shadow-md hover:border-red/20" : ""
+      } ${isLarge ? "gap-5 p-6" : "gap-4 p-4"}`}
     >
       <div
         className={`relative flex-shrink-0 overflow-hidden bg-paper-edge flex items-center justify-center ${
@@ -26,7 +28,7 @@ export default function PartnerCard({ name, description, image, size = "default"
             src={typeof image === 'string' ? image : urlFor(image).width(isLarge ? 300 : 200).height(isLarge ? 300 : 200).url()}
             alt={name}
             fill
-            className="object-cover"
+            className="object-contain p-2"
             sizes={isLarge ? "80px" : "64px"}
           />
         ) : (
@@ -39,4 +41,14 @@ export default function PartnerCard({ name, description, image, size = "default"
       </div>
     </article>
   );
+
+  if (link) {
+    return (
+      <a href={link} target="_blank" rel="noopener noreferrer" className="block">
+        {card}
+      </a>
+    );
+  }
+
+  return card;
 }
