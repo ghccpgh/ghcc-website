@@ -29,6 +29,7 @@ export default async function CommunityPartners({ size = "default" }: { size?: "
               name={partner.name}
               description={partner.description || ""}
               image={partner.image}
+              link={partner.link}
               size={size}
             />
           ))}
