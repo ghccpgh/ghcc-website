@@ -5,7 +5,8 @@ export const communityPartnersQuery = groq`
     _id,
     name,
     description,
-    image
+    image,
+    link
   }
 `;
 
@@ -14,6 +15,7 @@ export const nonCommunityPartnersQuery = groq`
     _id,
     name,
     description,
-    image
+    image,
+    link
   }
 `;

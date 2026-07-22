@@ -120,13 +120,11 @@ export default function Hero() {
 
             <div className="flex flex-col justify-center gap-8 md:w-1/2 md:pt-2 lg:w-[55%]">
               <p className="font-body text-base leading-relaxed text-ink-soft sm:text-lg md:text-xl">
-                For over a century, Hazelwood has been home to steelworkers,
-                families, and dreamers. The{" "}
+                Hazelwood has always been a neighborhood of builders, from the steelworkers of yesterday to the dreamers of today. We are the{" "}
                 <strong className="font-semibold text-ink">
-                  Greater Hazelwood Community Collaborative
+                  Greater Hazelwood Community Collaborative,
                 </strong>{" "}
-                brings together residents, churches, and organizations to shape
-                what comes next.
+               bringing together neighbors, local organizations, and faith leaders to build a vibrant, shared future.
               </p>
 
               <div className="flex flex-wrap gap-4">
