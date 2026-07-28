@@ -22,7 +22,7 @@ export default async function NonCommunityPartners({ size = "default" }: { size?
           </p>
         </div>
 
-        <div className={`grid grid-cols-1 sm:grid-cols-2 ${size === "large" ? "gap-5 lg:grid-cols-3" : "gap-4 lg:grid-cols-3 xl:grid-cols-4"}`}>
+        <div className={`grid grid-cols-1 ${size === "large" ? "gap-5" : "sm:grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4"}`}>
           {partners.map((partner: any) => (
             <PartnerCard
               key={partner._id}

@@ -16,7 +16,7 @@ export default function PartnerCard({ name, description, image, link, size = "de
     <article
       className={`flex items-center rounded-xl bg-paper shadow-sm transition-all border border-paper-edge ${
         link ? "cursor-pointer hover:shadow-md hover:border-red/20" : ""
-      } ${isLarge ? "gap-5 p-6" : "gap-4 p-4"}`}
+      } ${isLarge ? "gap-5 p-6 w-full" : "gap-4 p-4"}`}
     >
       <div
         className={`relative flex-shrink-0 overflow-hidden bg-paper-edge flex items-center justify-center ${
@@ -28,7 +28,7 @@ export default function PartnerCard({ name, description, image, link, size = "de
             src={typeof image === 'string' ? image : urlFor(image).width(isLarge ? 300 : 200).height(isLarge ? 300 : 200).url()}
             alt={name}
             fill
-            className="object-contain p-2"
+            className="object-contain"
             sizes={isLarge ? "80px" : "64px"}
           />
         ) : (
@@ -37,7 +37,7 @@ export default function PartnerCard({ name, description, image, link, size = "de
       </div>
       <div className="flex flex-col">
         <h3 className={`font-semibold text-ink leading-tight ${isLarge ? "text-base mb-1.5" : "text-sm mb-1"}`}>{name}</h3>
-        <p className={`text-ink-soft line-clamp-2 ${isLarge ? "text-sm" : "text-xs"}`}>{description}</p>
+        <p className={`text-ink-soft ${isLarge ? "text-sm" : "line-clamp-2 text-xs"}`}>{description}</p>
       </div>
     </article>
   );
