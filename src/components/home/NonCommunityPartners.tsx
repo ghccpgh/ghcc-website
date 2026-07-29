@@ -31,6 +31,7 @@ export default async function NonCommunityPartners({ size = "default" }: { size?
               image={partner.image}
               link={partner.link}
               size={size}
+              cardBgColor="bg-paper-warm"
             />
           ))}
         </div>

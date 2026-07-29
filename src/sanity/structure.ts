@@ -49,7 +49,7 @@ export const structure: StructureResolver = (S) =>
               // S.listItem().title('About').child(S.editor().schemaType('aboutPage').documentId('aboutPage')),
               // S.listItem().title('Contact').child(S.editor().schemaType('contactPage').documentId('contactPage')),
                 S.documentTypeListItem('testimonial').title('Community Voices').icon(UsersIcon),
-                S.documentTypeListItem('boardMember').title('Our Board').icon(UsersIcon)
+                S.documentTypeListItem('leadershipMember').title('Our Leadership').icon(UsersIcon)
             ])
         ),
 

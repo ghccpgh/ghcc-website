@@ -7,16 +7,26 @@ interface PartnerProps {
   image?: any;
   link?: string;
   size?: "default" | "large";
+  cardBgColor?: string; 
 }
 
-export default function PartnerCard({ name, description, image, link, size = "default" }: PartnerProps) {
+export default function PartnerCard({ name, description, image, link, size = "default", cardBgColor }: PartnerProps) {
   const isLarge = size === "large";
 
   const card = (
     <article
-      className={`flex items-center rounded-xl bg-paper shadow-sm transition-all border border-paper-edge ${
-        link ? "cursor-pointer hover:shadow-md hover:border-red/20" : ""
-      } ${isLarge ? "gap-5 p-6 w-full" : "gap-4 p-4"}`}
+      className={[
+        "flex",
+        "items-center",
+        "rounded-xl",
+        cardBgColor || "bg-paper",
+        "shadow-sm",
+        "transition-all",
+        "border",
+        "border-paper-edge",
+        link ? "cursor-pointer hover:shadow-md hover:border-red/20" : "",
+        isLarge ? "gap-5 p-6 w-full" : "gap-4 p-4"
+      ].filter(Boolean).join(" ")}
     >
       <div
         className={`relative flex-shrink-0 overflow-hidden bg-paper-edge flex items-center justify-center ${

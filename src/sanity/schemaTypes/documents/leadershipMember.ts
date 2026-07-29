@@ -1,15 +1,15 @@
 import { defineField, defineType } from "sanity";
 
-export const boardMember = defineType({
-  name: "boardMember",
-  title: "Board Member",
+export const leadershipMember = defineType({
+  name: "leadershipMember",
+  title: "Leadership Member",
   type: "document",
   fields: [
     defineField({
       name: "name",
       title: "Name",
       type: "string",
-      description: "Enter the board member's full name.",
+      description: "Enter the leadership member's full name.",
       validation: (Rule) => Rule.required(),
     }),
 
@@ -18,13 +18,13 @@ export const boardMember = defineType({
       title: "Role / Position",
       type: "string",
       description:
-        "Enter the board member's title or position within the organization.",
+        "Enter the leadership member's title or position within the organization.",
       validation: (Rule) => Rule.required(),
     }),
 
     defineField({
-      name: "boardGroup",
-      title: "Board Group",
+      name: "leadershipGroup",
+      title: "Leadership Group",
       type: "string",
       description:
         "Choose whether this person is part of the Executive Committee or a Committee Chair.",
@@ -43,7 +43,7 @@ export const boardMember = defineType({
       title: "Email",
       type: "email",
       description:
-        "Enter the board member's email address. This can be displayed on their profile page if desired.",
+        "Enter the leadership member's email address. This can be displayed on their profile page if desired.",
     }),
 
     defineField({
@@ -52,7 +52,7 @@ export const boardMember = defineType({
       type: "text",
       rows: 3,
       description:
-        "Enter a short sentence, quote, or introduction that appears on the board member card. Keep this to one or two sentences.",
+        "Enter a short sentence, quote, or introduction that appears on the leadership member card. Keep this to one or two sentences.",
     }),
 
     defineField({
@@ -61,7 +61,7 @@ export const boardMember = defineType({
       type: "text",
       rows: 10,
       description:
-        "Write the board member's full biography. This will appear on their individual profile page.",
+        "Write the leadership member's full biography. This will appear on their individual profile page.",
       validation: (Rule) =>
         Rule.max(300).warning("Keep the biography under 300 words."),
     }),
@@ -70,7 +70,7 @@ export const boardMember = defineType({
       name: "image",
       title: "Photo",
       type: "image",
-      description: "Upload a professional photo of the board member.",
+      description: "Upload a professional photo of the leadership member.",
       options: {
         hotspot: true,
       },
@@ -81,7 +81,7 @@ export const boardMember = defineType({
       title: "Page URL",
       type: "slug",
       description:
-        "This creates the link to the board member's profile page. Click 'Generate' after entering the person's name.",
+        "This creates the link to the leadership member's profile page. Click 'Generate' after entering the person's name.",
       options: {
         source: "name",
         maxLength: 96,
@@ -94,7 +94,7 @@ export const boardMember = defineType({
       title: "Display Order",
       type: "number",
       description:
-        "Choose the order this board member appears on the Board page. Lower numbers appear first.",
+        "Choose the order this leadership member appears on the Leadership page. Lower numbers appear first.",
       initialValue: 0,
     }),
   ],

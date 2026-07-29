@@ -1,23 +1,24 @@
 import Link from "next/link";
 import Image from "next/image";
 import SteelMill from "@/../public/droneshot-of-the-steel-mill.png";
+import hazelwoodGarden from "@public/Hazelwood Garden p10.jpg";
 
 const MEMBERSHIP = [
   {
     title: "One organization, one vote",
-    body: "Every member organization carries a single, equal voice, whatever its size or budget. No one buys a louder seat at the table.",
+    body: "Every member organization carries a single, equal voice, whatever its size or budget. No one has a louder seat at the table.",
   },
   {
     title: "Two kinds of members",
-    body: "Community-based organizations rooted in the neighborhood, and established partners welcomed in to support its growth.",
+    body: "Community-based organizations rooted in the neighborhood, and non-community organizations who have been welcomed in to support its growth.",
   },
   {
     title: "We meet all year",
-    body: "The full membership gathers regularly, at least every other month, to set priorities and make decisions together.",
+    body: "The general membership gathers each quarter for strategic decision-making, while committees advance specific projects between sessions.",
   },
   {
     title: "Open to all who serve Hazelwood",
-    body: "Nonprofits, community groups, businesses, churches, and institutions working for the neighborhood are welcome to join.",
+    body: "Nonprofits, community groups, businesses, churches, and institutions dedicated to our neighborhood are invited to apply for membership.",
   },
 ];
 
@@ -33,7 +34,7 @@ const SUB_PAGES = [
   { href: "/about/mission", label: "Mission", description: "Why we exist and the change we're working toward." },
   { href: "/about/partners", label: "Partners", description: "The organizations and institutions working alongside us." },
   { href: "/about/history", label: "History", description: "From steel mills to a community-led renaissance." },
-  { href: "/about/board", label: "Board", description: "The community leaders who guide our direction." },
+  { href: "/about/leadership", label: "Leadership", description: "The community leaders who guide our direction." },
 ];
 
 export const metadata = {
@@ -81,14 +82,13 @@ export default function AboutPage() {
         />
 
         <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 pb-16 pt-40 md:px-12 md:pb-20">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-red-soft">
+          <p className="mb-5 text-lg font-semibold uppercase tracking-[0.28em] text-red-soft">
             About Us
           </p>
           <h1 className="max-w-[20ch] font-display text-4xl font-light leading-[1.05] tracking-tight text-paper md:text-5xl lg:text-[3.75rem]">
-            We make sure Hazelwood&rsquo;s future is built{" "}
-            <em className="font-normal italic text-red-soft">with</em> its
-            people, not <em className="font-normal italic text-red-soft">around</em>{" "}
-            them.
+            We make sure
+Hazelwood's future  
+is built with its people. 
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-relaxed text-paper/85 md:text-xl">
             The Greater Hazelwood Community Collaborative is a coalition of
@@ -154,9 +154,7 @@ export default function AboutPage() {
             </p>
             <h2 className="mt-4 font-display text-[clamp(1.9rem,3.4vw,2.7rem)] font-normal leading-tight tracking-tight text-ink">
               Develop{" "}
-              <span className="underline decoration-red decoration-wavy decoration-2 underline-offset-[6px]">
                 without displacement
-              </span>
             </h2>
           </div>
           <div className="space-y-5 md:col-span-6 md:col-start-7">
@@ -164,7 +162,7 @@ export default function AboutPage() {
               Greater Hazelwood is changing. The redevelopment of the former
               mill site at Hazelwood Green is drawing new investment, new
               institutions, and new neighbors.
-            </p>
+            </p><br/>
             <p className="text-lg leading-relaxed text-ink-soft">
               That change can build a stronger neighborhood, or it can price out
               the families who have held this community together for
@@ -173,7 +171,7 @@ export default function AboutPage() {
               <span className="font-semibold text-ink">
                 with the community and through it, not to it.
               </span>
-            </p>
+            </p><br/>
             <p className="text-lg leading-relaxed text-ink-soft">
               We welcome new investment and new neighbors while protecting the
               residents, history, and culture that make Greater Hazelwood home,
@@ -184,30 +182,47 @@ export default function AboutPage() {
       </section>
 
       {/* HOW WE WORK */}
-      <section className="border-y border-paper-edge bg-paper-warm">
-        <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-12">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red">
-              How the Collaborative works
+      <section className="relative isolate overflow-hidden border-y border-paper-edge">
+  {/* Full-bleed background image */}
+  <Image
+    src={hazelwoodGarden}
+    alt="Community garden in Greater Hazelwood"
+    fill
+    className="object-cover"
+    sizes="100vw"
+    priority={false}
+  />
+  {/* Dark overlay for contrast */}
+  <div className="absolute inset-0 bg-ink/40" aria-hidden="true" />
+
+  <div className="relative mx-auto max-w-[1280px] px-6 py-20 md:px-12 md:py-28">
+    {/* Floating content card — larger, offset to the right */}
+    <div className="ml-auto max-w-3xl rounded-lg bg-paper p-10 shadow-2xl md:p-16">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red">
+        How the Collaborative works
+      </p>
+      <h2 className="mt-4 font-display text-[clamp(2rem,3.5vw,3rem)] font-normal leading-tight tracking-tight text-ink">
+        A true collaborative, by design
+      </h2>
+
+      <div className="mt-10 grid gap-8 sm:grid-cols-2 md:mt-12 md:gap-10">
+        {MEMBERSHIP.map((item, i) => (
+          <article key={item.title} className="group">
+            <span className="font-display text-base font-medium text-red">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 className="mt-1.5 font-display text-xl font-medium leading-tight text-ink">
+              {item.title}
+            </h3>
+            <p className="mt-2.5 leading-relaxed text-ink-soft">
+              {item.body}
             </p>
-            <h2 className="mt-4 font-display text-[clamp(1.8rem,3vw,2.4rem)] font-normal leading-tight tracking-tight text-ink">
-              A true collaborative, by design
-            </h2>
-          </div>
-          <div className="mt-12 grid gap-px overflow-hidden border border-paper-edge bg-paper-edge sm:grid-cols-2">
-            {MEMBERSHIP.map((item) => (
-              <article key={item.title} className="group relative bg-paper p-8 md:p-10">
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-0 h-0 w-[3px] bg-red transition-[height] duration-300 ease-out group-hover:h-full"
-                />
-                <h3 className="font-display text-xl font-medium text-ink">{item.title}</h3>
-                <p className="mt-3 leading-relaxed text-ink-soft">{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* PULL QUOTE */}
       <section className="bg-paper">
@@ -232,45 +247,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* LEADERSHIP */}
-      <section className="border-y border-paper-edge bg-paper-warm">
-        <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-12">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red">
-              2026 leadership
-            </p>
-            <h2 className="mt-4 font-display text-[clamp(1.8rem,3vw,2.4rem)] font-normal leading-tight tracking-tight text-ink">
-              The Executive Committee
-            </h2>
-            <p className="mt-4 leading-relaxed text-ink-soft">
-              Officers are elected by the membership to steward the
-              Collaborative&rsquo;s work between meetings.
-            </p>
-          </div>
-          <ul className="mt-12 grid gap-px overflow-hidden border border-paper-edge bg-paper-edge sm:grid-cols-2 lg:grid-cols-3">
-            {LEADERSHIP.map((person) => (
-              <li key={person.role} className="group relative bg-paper p-8">
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-0 h-0 w-[3px] bg-red transition-[height] duration-300 ease-out group-hover:h-full"
-                />
-                <p className="text-xs uppercase tracking-[0.18em] text-red">{person.role}</p>
-                <p className="mt-2 font-display text-xl font-medium text-ink">{person.name}</p>
-                <p className="mt-1 text-sm text-mute">{person.org}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      
 
       {/* EXPLORE / SUB-PAGES */}
-      <section className="bg-paper">
+      <section className="bg-ink">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-12">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mute">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-paper">
               Learn more
             </p>
-            <h2 className="mt-4 font-display text-[clamp(1.8rem,3vw,2.4rem)] font-normal leading-tight tracking-tight text-ink">
+            <h2 className="mt-4 font-display text-[clamp(1.8rem,3vw,2.4rem)] font-normal leading-tight tracking-tight text-white">
               Explore our story
             </h2>
           </div>
@@ -301,15 +287,15 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-ink">
+      <section className="bg-paper-warm">
         <div className="mx-auto flex max-w-[1280px] flex-col items-center px-6 py-24 text-center md:px-12">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-soft">
             Join the table
           </p>
-          <h2 className="mt-5 max-w-[20ch] font-display text-[clamp(2rem,4vw,3rem)] font-normal leading-tight tracking-tight text-paper">
+          <h2 className="mt-5 max-w-[20ch] font-display text-[clamp(2rem,4vw,3rem)] font-normal leading-tight tracking-tight text-ink">
             Bring your organization to the table.
           </h2>
-          <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-paper/75">
+          <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-ink/70">
             Membership is open to any organization working for the betterment of
             Greater Hazelwood. Come see what the Collaborative is building, and
             help decide where it goes next.
@@ -323,7 +309,7 @@ export default function AboutPage() {
             </Link>
             <Link
               href="/announcements"
-              className="inline-block rounded-full border-[1.5px] border-paper/60 px-8 py-4 font-semibold text-paper no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-paper hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
+              className="inline-block rounded-full border-[1.5px] border-paper-ink/60 px-8 py-4 font-semibold text-ink no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-paper hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
             >
               Visit a meeting
             </Link>
