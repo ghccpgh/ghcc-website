@@ -271,7 +271,7 @@ const sectionDescriptions: Record<string, string> = {
                         width="12"
                         height="12"
                         viewBox="0 0 12 12"
-                        className={`transition-transform duration-200 ${
+                        className={`hidden md:block transition-transform duration-200 ${
                           isDropdownOpen ? "rotate-180" : ""
                         }`}
                       >
