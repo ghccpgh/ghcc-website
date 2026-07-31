@@ -5,7 +5,7 @@ const LEADERSHIP_MEMBER_PROJECTION = `
   name,
   "slug": slug.current,
   role,
-  boardGroup,
+  "leadershipGroup": leadershipGroup,
   email,
   description,
   bio,
@@ -14,7 +14,7 @@ const LEADERSHIP_MEMBER_PROJECTION = `
 `;
 
 export const leadershipMembersQuery = groq`
-  *[_type == "leadershipMember"]
+  *[_type in ["leadershipMember"]]
   | order(sortOrder asc) {
     ${LEADERSHIP_MEMBER_PROJECTION}
   }
@@ -22,7 +22,7 @@ export const leadershipMembersQuery = groq`
 
 export const leadershipMemberQuery = groq`
   *[
-    _type == "leadershipMember" &&
+    _type in ["leadershipMember"] &&
     slug.current == $slug
   ][0] {
     ${LEADERSHIP_MEMBER_PROJECTION}
@@ -31,7 +31,7 @@ export const leadershipMemberQuery = groq`
 
 export const getAllLeadershipMemberSlugsQuery = groq`
   *[
-    _type == "leadershipMember" &&
+    _type in ["leadershipMember"] &&
     defined(slug.current)
   ] {
     "slug": slug.current
