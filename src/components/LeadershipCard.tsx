@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 
-export default function BoardCard({ member }: { member: any }) {
+export default function LeadershipCard({ member }: { member: any }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-paper-warm shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <Link
-        href={`/about/board/${member.slug}`}
+        href={`/about/leadership/${member.slug}`}
         className="group relative aspect-square w-full overflow-hidden bg-paper-edge"
       >
         {member.image ? (
@@ -26,7 +26,7 @@ export default function BoardCard({ member }: { member: any }) {
 
       <div className="flex flex-1 flex-col p-6">
         <Link
-          href={`/about/board/${member.slug}`}
+          href={`/about/leadership/${member.slug}`}
           className="no-underline"
         >
           <h3 className="text-xl font-medium text-ink transition-colors hover:text-red">

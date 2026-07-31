@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import birdsEye from "@public/timeline-images/Hazelwood birds eye view.png";
+import greaterHazlewoodOldMap from "@public/timeline-images/greater-hazlewood-old-map.png";
 import eraPhoto from "@public/timeline-images/1870s.png";
 import riverMill from "@public/timeline-images/The river and the mill.png";
 import hazPeak from "@public/timeline-images/Hazlewood at its peak.jpeg";
@@ -33,7 +33,7 @@ const CHAPTERS = [
       "Long before Pittsburgh had a name, people lived along this stretch of the Monongahela. The northern bank, about four miles southeast of the Point, was home to Native peoples whose burial mounds were later reported near what is now Second Avenue. Hazelnut trees lined the riverfront in thick groves, and their presence would eventually give the neighborhood its name.",
       "In the mid-1700s, rights to a large tract of woodland that included present-day Hazelwood and Greenfield were transferred from Native Americans through a Stanwix treaty for roughly $10,000. The transaction opened the land to European settlement, but the river had been drawing people to this valley for centuries before any deed was signed.",
     ],
-    image: birdsEye,
+    image: greaterHazlewoodOldMap,
     imageAlt: "Historical bird's-eye view of the Monongahela Valley and early Hazelwood.",
     layout: "right" as const,
   },

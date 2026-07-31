@@ -21,7 +21,7 @@ const links: NavItem[] = [
       { href: "/about/mission", label: "Mission" },
       { href: "/about/partners", label: "Partners" },
       { href: "/about/history", label: "History" },
-      { href: "/about/board", label: "Board" },
+      { href: "/about/leadership", label: "Leadership" },
     ],
   },
   { href: "/announcements", label: "Announcements" },

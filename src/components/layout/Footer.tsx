@@ -6,9 +6,9 @@ const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/about/mission", label: "Mission" },
-    { href: "/about/team", label: "Team" },
+    { href: "/about/partners", label: "Partners" },
     { href: "/about/history", label: "History" },
-    { href: "/about/board", label: "Board" },
+    { href: "/about/leadership", label: "Leadership" },
     { href: "/announcements", label: "Announcements" },
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
@@ -102,7 +102,7 @@ export default function Footer() {
                                 Contact
                             </h3>
                             <a href="mailto:contact.ghcc@gmail.com" className="text-sm text-paper-warm/80">
-                                contact.ghcc@gmail.com
+                                contact.greaterhazelwood@gmail.com
                             </a>
                         </div>
 

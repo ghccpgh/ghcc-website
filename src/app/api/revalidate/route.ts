@@ -34,8 +34,11 @@ export async function POST(req: NextRequest) {
       case "announcement":
         revalidatePath("/announcements");
         break;
-      case "boardMember":
-        revalidatePath("/about/board");
+      case "leadershipMember":
+        revalidatePath("/about/leadership");
+        if (body.slug?.current) {
+          revalidatePath(`/about/leadership/${body.slug.current}`);
+        }
         break;
       case "partner":
         revalidatePath("/about/partners");

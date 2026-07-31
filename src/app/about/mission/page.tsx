@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import communityMtg1 from '@public/Community_Mtg_1.png';
+import ghccNeighborhoodPlan from '@public/ghcc-neighborhood-plan.png';
 
 export const metadata = {
   title: "Our Mission | GHCC",
@@ -12,15 +13,15 @@ export default function MissionPage() {
     <main className="min-h-screen bg-paper pt-32 pb-20">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-paper text-ink">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-12 pb-20">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-12 pb-15">
           <p className="font-mono text-xs tracking-[0.22em] uppercase text-red mb-6 rise">Our Mission</p>
           <h1 className="font-display font-normal text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight max-w-[20ch] mb-8 rise d1">
             Development that happens <em className="italic text-red">with</em> the community, never <em className="italic text-red">to</em> it.
-          </h1>
+          </h1><br/>
           <p className="max-w-2xl text-lg text-mute mb-10 rise d2">
             We align people, partners, and resources to build a stronger Greater Hazelwood, advancing the economic, social, and physical well-being of every resident and stakeholder who calls this neighborhood home.
           </p>
-          <div className="inline-flex items-center gap-3 font-mono text-xs tracking-[0.12em] uppercase text-mute rise d3">
+          <div className="inline-flex items-center gap-3 font-mono text-sm tracking-[0.12em] uppercase text-mute rise d3">
             <span className="w-[26px] h-[1px] bg-paper-edge"></span>
             Adopted in the GHCC Bylaws
           </div>
@@ -46,8 +47,8 @@ export default function MissionPage() {
               </h2>
             </div>
             <div className="text-lg text-ink-soft space-y-5">
-              <p>Greater Hazelwood is changing. New investment is arriving, much of it drawn by the redevelopment of the former mill site at Hazelwood Green. That change can build a stronger neighborhood, or it can push out the very people who have held this community together for generations.</p>
-              <p>The Collaborative exists to make sure it is the former. We bring the neighborhood's organizations together so that growth happens <strong className="text-ink font-semibold">with us and through us, not to us</strong>. We welcome new investment and new neighbors while protecting the residents, history, and culture that make this place home.</p>
+              <p>Greater Hazelwood is changing. New investment is arriving, much of it drawn by the redevelopment of the former mill site at Hazelwood Green. That change can build a stronger neighborhood, or it can push out the very people who have held this community together for generations.</p><br/>
+              <p>The Collaborative exists to make sure it is the former. We bring the neighborhood's organizations together so that growth happens <strong className="text-ink font-semibold">with us and through us, not to us</strong>. We welcome new investment and new neighbors while protecting the residents, history, and culture that make this place home.</p><br/>
               <p>That is what we mean by <strong className="text-ink font-semibold">develop without displacement</strong>, and it is the standard we hold every plan, partner, and project to.</p>
             </div>
           </div>
@@ -62,7 +63,7 @@ export default function MissionPage() {
             <h2 className="font-display font-normal text-3xl md:text-4xl leading-[1.12] text-ink">What the mission asks of us</h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[1px] bg-paper-edge border border-paper-edge">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[1px] bg-paper-edge border border-paper-edge mb-12">
             <article className="bg-paper-warm p-8 md:p-10 relative group">
               <div className="absolute left-0 top-0 w-[3px] h-0 bg-red transition-all duration-350 ease-out group-hover:h-full"></div>
               <span className="font-mono text-xs text-red tracking-[0.1em]">01</span>
@@ -88,6 +89,27 @@ export default function MissionPage() {
               <p className="text-base text-mute">Advocate for affordable housing, good local jobs, accessible streets, and healthy parks, so families can stay in the community and thrive.</p>
             </article>
           </div>
+              <div className="w-full">
+                <Link
+                  href="https://www.pittsburghpa.gov/Business-Development/City-Planning/Master-Neighborhood-Plans/Greater-Hazelwood-Neighborhood-Plan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="relative pt-[56.25%] group">
+                    <Image
+                      src={ghccNeighborhoodPlan}
+                      alt="Screenshot of Greater Hazelwood Neighborhood Plan website"
+                      fill
+                      className="object-cover rounded-lg shadow-md transition-all duration-300 group-hover:shadow-lg group-hover:scale-[1.02]"
+                    />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg p-4">
+                      <span className="text-white text-xl font-semibold text-center mb-2">View The Greater Hazelwood Neighborhood Plan</span>
+                      <p className="text-sm text-white/80 text-center">Click to open the official plan on the City of Pittsburgh website (opens in a new tab).</p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
         </div>
       </section>
 
@@ -111,10 +133,10 @@ export default function MissionPage() {
           <p className="font-mono text-xs tracking-[0.22em] uppercase text-red mb-4 inline-block">Join the table</p>
           <h2 className="font-display font-normal text-3xl md:text-4xl lg:text-[3rem] leading-[1.08] mb-8 text-ink">
             This work belongs to all of us.
-          </h2>
+          </h2><br />
           <p className="max-w-2xl text-lg text-center text-mute mb-10">
             Membership is open to nonprofits, community groups, businesses, churches, and institutions working for the betterment of Greater Hazelwood. Come to a meeting, or bring your organization into the Collaborative.
-          </p>
+          </p><br />
           <Link href="/contact" className="inline-block rounded-full bg-red px-8 py-4 font-semibold text-paper transition-all duration-200 hover:bg-red-dark hover:shadow-lg active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red">
             Get involved
           </Link>
