@@ -2,6 +2,8 @@ import { client } from "@/sanity/lib/client";
 import { leadershipMembersQuery } from "@/sanity/queries/leadershipMembers";
 import LeadershipCard from "@/components/LeadershipCard";
 
+export const revalidate = 60;
+
 export default async function LeadershipMembers() {
   const members = await client.fetch(leadershipMembersQuery);
 
