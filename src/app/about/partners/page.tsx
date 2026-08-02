@@ -1,6 +1,8 @@
 import CommunityPartners from "@/components/home/CommunityPartners";
 import NonCommunityPartners from "@/components/home/NonCommunityPartners";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Partners | Greater Hazelwood Community Collaborative",
   description:
