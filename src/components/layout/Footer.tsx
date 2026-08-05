@@ -89,9 +89,7 @@ export default function Footer() {
                             <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-red">
                                 Visit
                             </h3>
-                            <p className="text-sm text-paper-warm/80">
-                                5125 Second Avenue
-                            </p>
+                            
                             <p className="text-sm text-paper-warm/80">
                                 Pittsburgh, PA 15207
                             </p>
