@@ -30,7 +30,6 @@ export const post = defineType({
             name: 'author',
             title: 'Author',
             type: 'string',
-            validation: Rule => Rule.required()
         }),
         defineField({
             name: 'excerpt',
