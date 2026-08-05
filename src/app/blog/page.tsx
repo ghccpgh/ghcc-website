@@ -145,8 +145,7 @@ export default async function BlogIndexPage() {
             <em className="font-normal italic text-red">the neighborhood</em>.
           </h1>
           <p className="mt-5 text-base leading-relaxed text-mute md:text-lg">
-            Essays, oral histories, and reporting from residents, organizers,
-            and friends of Hazelwood.
+            Exploring Hazelwood through essays, oral histories, and reporting.
           </p>
         </header>
 
